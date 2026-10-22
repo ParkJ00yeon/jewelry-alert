@@ -1,0 +1,34 @@
+name: 주얼리 가격 확인
+
+on:
+  schedule:
+    - cron: "7,37 * * * *"   # 30분마다 (GitHub 사정으로 몇 분~수십 분 늦어질 수 있음)
+  workflow_dispatch: {}       # Actions 화면에서 'Run workflow'로 바로 실행
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jewelry-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pillow
+      - name: 확인하고 알림 보내기
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: python run.py
+      - name: 결과 저장
+        run: |
+          git config user.name "jewelry-bot"
+          git config user.email "jewelry-bot@users.noreply.github.com"
+          git add db.json
+          git diff --cached --quiet || (git commit -m "가격 확인 $(TZ=Asia/Seoul date '+%m/%d %H:%M')" && git push)
