@@ -382,6 +382,8 @@ def watch_scan(existing_urls, alerted, crit, items_max_order, quick=False):
     maxr = float(crit.get("maxRatio", 1.4)); minL = float(crit.get("minLengthCm", 45)); maxP = float(crit.get("maxPrice", 80000))
     au = A.auG
     order = items_max_order
+    DISC = {}  # 상품 id -> (정가 또는 None, 할인 표시) : 할인 상품은 가성비 기준을 0.3배 넓혀서 본다
+    SALE_EXTRA = float(crit.get("saleExtra", 0.3))
 
     def ratio(price, inf):
         return price / (inf[0] * inf[2] * au + inf[5])
@@ -391,7 +393,7 @@ def watch_scan(existing_urls, alerted, crit, items_max_order, quick=False):
         if not inf or not price or price > maxP or not len_ok(inf[4], inf[1], minL): return
         r = ratio(price, inf)
         if callable(avail):
-            if r > maxr or did in alerted or url in existing_urls: return
+            if r > maxr + (SALE_EXTRA if did in DISC else 0) or did in alerted or url in existing_urls: return
             d2 = avail()
             if not d2.get("ok") or d2.get("status") != "판매중": return
             price = d2.get("price") or price
@@ -403,7 +405,8 @@ def watch_scan(existing_urls, alerted, crit, items_max_order, quick=False):
         line = f"{site} {did[1:]} {inf[3]} {KIND_LABEL[inf[4]]} ¥{price:,} {inf[0]:g}g {r:.2f}배"
         if site not in best or r < best[site][0]:
             best[site] = (r, line)
-        if r <= maxr and did not in alerted and url not in existing_urls:
+        thr = maxr + (SALE_EXTRA if did in DISC else 0)
+        if r <= thr and did not in alerted and url not in existing_urls:
             order += 1
             w, L, pur, mat, kind, sv, sb, stl = inf
             neck = kind in ("목걸이", "체인")
@@ -417,6 +420,12 @@ def watch_scan(existing_urls, alerted, crit, items_max_order, quick=False):
                    "condition": extra.get("rank", ""), "store": extra.get("store", ""),
                    "note": f"새 입고 감시로 자동 추가 (가성비 {r:.2f}배, K18·K14·¥8만 이하)",
                    "valueNote": "원석 가치는 대략적인 추정치" if sv else "원석 없는 금 제품이라 금값 비교가 정확한 편"}
+            if did in DISC:
+                orig, tag = DISC[did]
+                if orig and orig > price:
+                    doc["origPrice"] = orig; tag = f"할인 {round((1 - price / orig) * 100)}% (정가 ¥{orig:,})"
+                doc["saleTag"] = tag
+                doc["note"] = f"할인 상품 감시로 자동 추가 ({tag}, 가성비 {r:.2f}배)"
             found.append((did, doc, extra.get("img", ""), r))
 
     # 비슷한 디자인 감시 (사용자 요청 2026-10-22: 품절된 그리버 197074와 비슷한 밀그레인 다이아 목걸이)
@@ -485,6 +494,8 @@ def watch_scan(existing_urls, alerted, crit, items_max_order, quick=False):
                     L = max_len(sz.group(1) if sz else "")
                     if classify(name) in ("목걸이", "체인") and L and L < minL: continue
                     cands[h.group(1)] = (name, price, L)
+                    if "price-sale" in c and len(pr) > 1 and max(num(x) for x in pr) > price:
+                        DISC["k" + re.sub(r"\D", "", h.group(1))] = (max(num(x) for x in pr), "할인")
                 if len(cards) < 50: break
         for path, (name, price, L) in cands.items():
             url = "https://komehyo.jp" + path
@@ -524,6 +535,8 @@ def watch_scan(existing_urls, alerted, crit, items_max_order, quick=False):
                     price = num(pr.group(1))
                     if not price or price > maxP or not gold_info(name)[0] or not classify(name): continue
                     cands[h.group(1)] = (name, price)
+                    if "値下" in c:
+                        DISC["g" + h.group(1).rsplit("/", 1)[1]] = (None, "가격 인하 상품(値下げ品)")
         for path, (name, price) in cands.items():
             url = "https://www.greeber.net" + path
             did = "g" + path.rsplit("/", 1)[1]
@@ -611,6 +624,9 @@ def watch_scan(existing_urls, alerted, crit, items_max_order, quick=False):
                 pur = gold_info(ti)[0] or gold_info(b[:3000])[0]
                 if not pur: continue
                 price = round(float(x["variants"][0]["price"]))
+                cap = x["variants"][0].get("compare_at_price")
+                if cap and float(cap) > price * 1.05:
+                    DISC["s" + x["handle"].replace("-", "")] = (round(float(cap)), "할인")
                 if price > maxP: continue
                 w = re.search(r"重量[^\d]{0,15}([\d.]+)\s*g", b); L = re.search(r"(?:チェーンの長さ|長さ)[^\d]{0,15}([\d.]+)\s*cm", b)
                 if not w: continue
@@ -725,9 +741,9 @@ def main():
             if doc.get("similarTo"):
                 events["similar"].append(f"{doc['site']} {doc['title']} · " + describe(doc) + "".join(" · " + x for x in (doc['size'], doc['store']) if x) + f"\n  {doc['url']}")
                 continue
-            events["new_watch"].append(f"새 입고: {doc['site']} {doc['title']} · " + describe(doc) + "".join(" · " + x for x in (doc['size'], doc['store']) if x) + f"\n  {doc['url']}")
+            events["new_watch"].append(f"{'할인 ' if doc.get('saleTag') else ''}새 입고: {doc['site']} {doc['title']} · " + (doc['saleTag'] + " · " if doc.get('saleTag') else "") + describe(doc) + "".join(" · " + x for x in (doc['size'], doc['store']) if x) + f"\n  {doc['url']}")
         wdata = {"lastScan": A.now, "alerted": alerted, "wcache": newwc, "wver": 4, "maxPrice": int(watch.get("maxPrice", 80000)),
-                 "criteria": "K18·K14 골드(색상 무관) 목걸이(45cm 이상)·팔찌·펜던트·귀걸이(찝는 형식 제외), 할로우(속 빈) 제품 제외, 가성비(금+원석 추정 가치 대비) 1.40배 이하, ¥80,000 이하 · 코메효 → 그리버 → 셀비"}
+                 "criteria": "K18·K14 골드(색상 무관) 목걸이(45cm 이상)·팔찌·펜던트·귀걸이(찝는 형식 제외), 할로우(속 빈) 제품 제외, 가성비(금+원석 추정 가치 대비) 1.40배 이하(할인 상품은 1.70배 이하), ¥80,000 이하 · 코메효 → 그리버 → 셀비"}
         wdata["design"] = dict(watch.get("design") or {}, on=(watch.get("design") or {}).get("on", True), maxPrice=int((watch.get("design") or {}).get("maxPrice", 50000)),
                                seen=watch.get("_dseen", []), ref="g197074",
                                criteria="밀그레인(ミルグレイン·ミル打ち) + 다이아 목걸이·펜던트, K18·K14(색상 무관), ¥50,000 이하, 길이 제한 없음 · 코메효·그리버·셀비")
@@ -787,7 +803,7 @@ def main():
 
     # 알림 초안
     msg = []
-    titles = {"must": "꼭 사야 할 템 (가성비 1.10배 이하 · S·A급 · 최근 가격 인하 중 2개 이상)", "fav": "즐겨찾기", "new_watch": "새 입고 (K18·K14 목걸이·팔찌·펜던트·귀걸이, 가성비 1.40배 이하·¥8만 이하)", "similar": "비슷한 디자인 (품절된 그리버 밀그레인 다이아 목걸이와 비슷 · ¥5만 이하)", "down": "가격 인하·재판매", "sold": "품절", "up": "가격 인상", "other": "기타 변동"}
+    titles = {"must": "꼭 사야 할 템 (가성비 1.10배 이하 · S·A급 · 최근 가격 인하 중 2개 이상)", "fav": "즐겨찾기", "new_watch": "새 입고 (K18·K14 목걸이·팔찌·펜던트·귀걸이, 가성비 1.40배 이하 · 할인 상품은 1.70배 이하 · ¥8만 이하)", "similar": "비슷한 디자인 (품절된 그리버 밀그레인 다이아 목걸이와 비슷 · ¥5만 이하)", "down": "가격 인하·재판매", "sold": "품절", "up": "가격 인상", "other": "기타 변동"}
     for k in ("must", "fav", "similar", "new_watch", "down", "sold", "up", "other"):
         if events[k]:
             msg.append(f"**{titles[k]}**")
