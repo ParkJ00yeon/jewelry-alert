@@ -1,0 +1,36 @@
+name: 새 사이트 시험
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: 사이트 페이지 받아 보기
+        run: |
+          mkdir -p probe
+          UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0 Safari/537.36"
+          get() { curl -sSL -A "$UA" --max-time 40 -o "probe/$1" -w "$1 %{http_code} %{size_download}\n" "$2" >> probe/_status.txt || echo "$1 FAIL" >> probe/_status.txt; }
+          get brandoff_jewelry.html     "https://www.brandoff-store.com/Form/Product/ProductList.aspx?path=%E3%82%B8%E3%83%A5%E3%82%A8%E3%83%AA%E3%83%BC"
+          get brandoff_jewelry_new.html "https://www.brandoff-store.com/Form/Product/ProductList.aspx?path=%E3%82%B8%E3%83%A5%E3%82%A8%E3%83%AA%E3%83%BC&s2[]=NEW"
+          get brandoff_jewelry.json     "https://www.brandoff-store.com/Form/Product/ProductList.aspx?path=%E3%82%B8%E3%83%A5%E3%82%A8%E3%83%AA%E3%83%BC&fmt=json"
+          get brandoff_search.html      "https://www.brandoff-store.com/Form/Product/ProductList.aspx?swrd=K18%20%E3%83%8D%E3%83%83%E3%82%AF%E3%83%AC%E3%82%B9"
+          get brandoff_item.html        "https://www.brandoff-store.com/Form/Product/ProductDetail.aspx?shop=0&pid=2118400252672&cat=130103"
+          get watchnian_necklace.html   "https://watchnian.com/shop/r/rj-ncklc/?filtercode13=1"
+          get watchnian_used.html       "https://watchnian.com/shop/r/rj-used/?filtercode13=1"
+          get watchnian_search.html     "https://watchnian.com/shop/goods/search.aspx?keyword=K18+%E3%83%8D%E3%83%83%E3%82%AF%E3%83%AC%E3%82%B9"
+          get 2ndstreet_search.html     "https://www.2ndstreet.jp/search?keyword=K18%20%E3%83%8D%E3%83%83%E3%82%AF%E3%83%AC%E3%82%B9"
+          get 2ndstreet_top.html        "https://www.2ndstreet.jp/"
+          cat probe/_status.txt
+      - name: 결과 저장
+        run: |
+          git config user.name "jewelry-bot"
+          git config user.email "jewelry-bot@users.noreply.github.com"
+          git add probe
+          git commit -m "새 사이트 시험 결과" && git push
