@@ -223,6 +223,33 @@ def purity(material):
     return None, None
 
 
+STRAND_RE = r"マルチカラー|マルチストーン|ビーズ|ロンデル|タッセル|さざれ|ボール.*(?:オニキス|ラピス|ターコイズ)"
+
+
+def stone_heavy(it):
+    """표시 중량에 보석 무게가 많이 섞여 있어 금속 중량으로 볼 수 없으면 이유를, 아니면 ""를 돌려준다. (사용자 요청 2026-10-23)"""
+    t = " ".join(str(it.get(k) or "") for k in ("jpTitle", "stones", "title"))
+    try:
+        w = float(re.sub(r"[^\d.]", "", str(it.get("weight") or "")) or 0)
+    except ValueError:
+        w = 0
+    if re.search(STRAND_RE, t):
+        return "보석·비즈가 많이 달린 디자인이라 중량에 보석 무게가 포함됨"
+    if re.search(r"パール|真珠|pearl", t, re.I) and not re.search(r"一粒|ペンダント|ステーション|ワンパール|プチ|ピアス|1P", t):
+        return "진주 목걸이라 중량에 진주 무게가 포함됨"
+    cts = [float(x) for x in re.findall(r"(\d+(?:\.\d+)?)\s*(?:ct|CT|Ct|カラット)", it.get("jpTitle") or "")]
+    tot = sum(cts) if cts else 0
+    if w and tot * 0.2 >= 0.15 * w:
+        return f"보석 약 {tot:g}ct(약 {tot * 0.2:.1f}g)가 중량 {w:g}g에 포함됨"
+    pur, _k = purity(it.get("material"))
+    if w and pur and it.get("price"):
+        unit = A.auG if _k == "au" else A.ptG
+        p = it["price"] if it.get("currency") != "USD" else it["price"] * A.usdKrw / A.jpyKrw
+        if p / (w * pur * unit) < 0.6:
+            return "가격이 금속값보다 훨씬 낮아 중량에 보석 무게가 포함된 것으로 보임"
+    return ""
+
+
 def grade(r):
     return "좋음" if r <= 1.6 else ("보통" if r <= 2.4 else "나쁨")
 
@@ -234,6 +261,8 @@ def value(it, A):
         w = 0
     pur, kind = purity(it.get("material"))
     if not w or not pur or it.get("price") is None:
+        return None
+    if stone_heavy(it):
         return None
     unit = A.auG if kind == "au" else A.ptG
     val = w * pur * unit
@@ -278,6 +307,9 @@ def describe(it, prev=None):
     if it.get("price") is not None:
         parts.append("약 " + won(krw(it, it["price"])))
         parts.append(duty(it))
+    sh = stone_heavy(it) if it.get("price") is not None else ""
+    if sh:
+        parts.append("가성비 계산 제외 (" + sh + ")")
     if v:
         r, rt = v
         mt = "플래티넘" if purity(it.get("material"))[1] == "pt" else "금"
@@ -405,6 +437,7 @@ def info_from(kind, name, material, weight, L, stones):
     except (TypeError, ValueError):
         return None
     if not w: return None
+    if stone_heavy({"jpTitle": name, "stones": stones, "weight": w}): return None  # 보석 무게가 섞인 중량은 가성비를 믿을 수 없어 자동 등록하지 않음
     sv, sb, stl = stone_est(stones, name, kind)
     if mat.startswith("Pt"): return None  # 사용자 요청 2026-10-23: 플래티넘은 새로 자동 등록하지 않음 (기존·직접 링크 추가 상품은 유지)
     if mat.startswith("Pt"):  # (이전 규칙) 플래티넘은 다이아 또는 귀한 유색석이 있는 목걸이·펜던트·팔찌만
@@ -447,6 +480,7 @@ def watch_scan(existing_urls, alerted, crit, items_max_order, quick=False):
         nonlocal order
         if not inf or not price or price > maxP or not len_ok(inf[4], inf[1], minL): return
         r = ratio(price, inf)
+        if r < 0.6: return  # 금속값보다 훨씬 싼 것은 중량에 보석 무게가 섞인 경우
         if callable(avail):
             if r > thr_of(did, inf) or did in alerted or (url in existing_urls or did in existing_urls): return
             d2 = avail()
@@ -894,6 +928,21 @@ def main():
         plan["update"].append({"collection": "meta", "doc_id": "events", "file_path": write("meta", "events", evdoc)})
     except Exception as e:
         print(f"[events] {e}", file=sys.stderr)
+
+    # 보석 무게 포함 표시(stoneWeight) 유지
+    upd = {u["doc_id"]: u for u in plan["update"] if u["collection"] == "items"}
+    for did, it in items.items():
+        if it.get("pending"): continue
+        cur = dict(it)
+        if did in upd: cur.update(json.load(open(upd[did]["file_path"])))
+        sh = stone_heavy(cur)
+        if sh == (it.get("stoneWeight") or ""): continue
+        add = {"stoneWeight": sh} if sh else {"stoneWeight": {"__delete__": True}}
+        if did in upd:
+            pth = upd[did]["file_path"]; data = json.load(open(pth)); data.update(add); json.dump(data, open(pth, "w"), ensure_ascii=False)
+        else:
+            plan["update"].append({"collection": "items", "doc_id": did, "file_path": write("items", did, add)})
+            upd[did] = plan["update"][-1]
 
     # meta/fx·metal·run
     if fresh.get("metal"):
