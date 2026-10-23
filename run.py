@@ -86,7 +86,7 @@ def main():
             body = body.encode("utf-8")[:3700].decode("utf-8", "ignore") + "\n… (나머지는 리스트에서 확인)"
         urls = re.findall(r"https://\S+", msg)
         click = urls[0] if urls else LIST_URL
-        high = msg.startswith("★") or msg.startswith("꼭 사야") or msg.startswith("비슷한 디자인")
+        high = msg.startswith("★") or msg.startswith("꼭 사야") or msg.startswith("비슷한 디자인") or msg.startswith("새 이벤트")
         ntfy(topic, push or "주얼리 변동", body, click, "high" if high else "default")
         print("ntfy sent")
 

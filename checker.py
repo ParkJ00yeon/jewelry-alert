@@ -36,6 +36,36 @@ def gold_info(text):
     return pur, f"{k} {c}"
 
 
+def pt_info(text):
+    """플래티넘 순도(Pt900 .9 / Pt850 .85)와 한국어 소재명. 사용자 요청 2026-10-23: Pt900·Pt850 다이아·귀한 유색석 목걸이·팔찌도 감시."""
+    t = text or ""
+    if re.search(r"Pt850|PT850|プラチナ850", t): return .85, "Pt850 플래티넘"
+    if re.search(r"Pt900|PT900|プラチナ900", t): return .9, "Pt900 플래티넘"
+    return None, ""
+
+
+def metal_info(text):
+    r = gold_info(text)
+    return r if r[0] else pt_info(text)
+
+
+# 브랜드 주얼리: 할인 중이면 가성비 기준을 2.30배까지 넓힌다 (사용자 요청 2026-10-23)
+BRAND_RE = (r"ヴァンドーム|4℃|ヨンドシー|スタージュエリー|STAR JEWELRY|アガット|agete|ポンテヴェキオ|ポンテベッキオ|アーカー|AHKAH|"
+            r"ノジェス|タサキ|TASAKI|ティファニー|Tiffany|カルティエ|Cartier|ブルガリ|BVLGARI|ヴァンクリーフ|ショーメ|ディオール|"
+            r"ギメル|ジュエリーツツミ|ココシュニック|マリハ|ロイヤルアッシャー|フォーエバーマーク|ハリーウィンストン|ブシュロン|シャネル|"
+            r"エルメス|フレッド|ダミアーニ|ポメラート|ピアジェ|ベルシオラ|アンテール|ラザール|LAZARE|ミキモト|MIKIMOTO|ジュエリーマキ|ケイウノ|"
+            r"ティセラ|ヴァンドーム青山|アッシュペーフランス|H.P.FRANCE")
+BRAND_CAP = 2.3
+# 사용자가 즐겨찾기한 디자인 계열 (밀그레인·파베·테이퍼·그라데이션·꽃·물방울·하트·리본·한 알 등): 원석이 있고 할인 중이면 브랜드처럼 2.30배까지 (사용자 요청 2026-10-23)
+TASTE_RE = (r"ミルグレイン|ミル打|パヴェ|パべ|パベ|テーパー|グラデーション|フラワー|花|ティアドロップ|しずく|雫|ハート|リボン|一粒|ソリテール|"
+            r"Uライン|U字|サークル|ローズカット")
+TASTE_CAP = 2.0
+
+
+# 플래티넘 감시에서 '소장 가치 있는 유색석'으로 보는 보석 (값싼 수정·자수정·가넷 등은 제외)
+PT_GEM_RE = r"ルビー|サファイア|サファイヤ|エメラルド|アレキサンドライト|アレキ|パライバ|タンザナイト|スピネル|パパラチア|デマントイド|ブラックオパール"
+
+
 def strip_gold(t):
     return re.sub(r"(K18|K14|18K|14K|750|585)\s*(WG|YG|PG|RG|CG)?", "", t or "")
 
@@ -250,8 +280,9 @@ def describe(it, prev=None):
         parts.append(duty(it))
     if v:
         r, rt = v
-        parts.append(f"가성비 전체 중량 대비 {rt:.2f}배 {grade(rt)} / 금 중량 대비 {r:.2f}배 {grade(r)}" if rt is not None
-                     else f"가성비 금 중량 대비 {r:.2f}배 {grade(r)}")
+        mt = "플래티넘" if purity(it.get("material"))[1] == "pt" else "금"
+        parts.append(f"가성비 전체 중량 대비 {rt:.2f}배 {grade(rt)} / {mt} 중량 대비 {r:.2f}배 {grade(r)}" if rt is not None
+                     else f"가성비 {mt} 중량 대비 {r:.2f}배 {grade(r)}")
     return " · ".join(p for p in parts if p)
 
 
@@ -307,9 +338,13 @@ def classify(name):
     if re.search(EXCL, n): return None
     if "ピアス" in n: return "귀걸이"
     if re.search(r"ブレス|バングル", n): return "팔찌"
-    if re.search(r"ペンダント|トップ", n): return "펜던트"
+    # 사용자 요청 2026-10-23 종류 기준: 펜던트 = 체인 없는 펜던트 톱만, 목걸이 = 체인이 달린 것(ペンダントネックレス 포함), 체인 = 장식 없는 체인
+    if re.search(r"ペンダントトップ|トップのみ|チャーム", n) or (re.search(r"ペンダント|トップ", n) and "ネックレス" not in n): return "펜던트"
     if re.search(r"ネックレス|" + CHAIN_RE, n):
-        return "체인" if re.search(CHAIN_RE, n) and not re.search(r"ダイヤ|" + COLOR_RE, n) else "목걸이"
+        if re.search(CHAIN_RE, n) and not re.search(r"ダイヤ|" + COLOR_RE, n): return "체인"
+        # 코메효처럼 이름이 '소재 + ネックレス'뿐인 상품은 장식 없는 체인
+        rest = re.sub(r"\([\d-]+\)|K18|K14|K10|750|585|WG|YG|PG|RG|CG|Pt\d+|/|\s|ネックレス", "", n)
+        return "체인" if not rest else "목걸이"
     return None
 
 
@@ -348,11 +383,12 @@ def stone_est(stones, name, kind=""):
 
 
 def max_len(s):
-    ns = [float(x) for x in re.findall(r"(\d+(?:\.\d+)?)\s*(?:cm|ｃｍ)?", s or "") if 20 <= float(x) <= 120]
+    ns = [float(x) for x, u in re.findall(r"(\d+(?:\.\d+)?)\s*(mm|ｍｍ|cm|ｃｍ)?", s or "") if u not in ("mm", "ｍｍ") and 20 <= float(x) <= 120]
     return max(ns) if ns else 0
 
 
 def len_ok(kind, L, minL):
+    if not minL: return True
     if kind in ("목걸이", "체인"): return L >= minL
     if kind == "펜던트": return not (20 <= L < minL)  # 체인이 달린 펜던트는 45cm 이상만
     return True
@@ -361,8 +397,8 @@ def len_ok(kind, L, minL):
 def info_from(kind, name, material, weight, L, stones):
     """상세 정보에서 감시용 정보 리스트 [중량, 길이, 순도, 소재, 종류, 원석가치, 근거, 원석표기]. 대상이 아니면 None."""
     if not kind: return None
-    pur, mat = gold_info(material or "")
-    if not pur: pur, mat = gold_info(name)
+    pur, mat = metal_info(material or "")
+    if not pur: pur, mat = metal_info(name)
     if not pur: return None
     try:
         w = float(weight)
@@ -370,6 +406,11 @@ def info_from(kind, name, material, weight, L, stones):
         return None
     if not w: return None
     sv, sb, stl = stone_est(stones, name, kind)
+    if mat.startswith("Pt"): return None  # 사용자 요청 2026-10-23: 플래티넘은 새로 자동 등록하지 않음 (기존·직접 링크 추가 상품은 유지)
+    if mat.startswith("Pt"):  # (이전 규칙) 플래티넘은 다이아 또는 귀한 유색석이 있는 목걸이·펜던트·팔찌만
+        t = (stones or "") + " " + (name or "")
+        if kind not in ("목걸이", "펜던트", "팔찌"): return None
+        if not (stl.startswith("다이아") or (re.search(PT_GEM_RE, t) and not re.search(FAKE_RE, t))): return None
     return [w, L, pur, mat, kind, sv, sb, stl]
 
 
@@ -379,21 +420,35 @@ def watch_scan(existing_urls, alerted, crit, items_max_order, quick=False):
     wc = {k: v for k, v in wc.items() if v is None or (isinstance(v, list) and len(v) == 8)}  # 예전 형식 캐시는 버림  # 상품 id -> 감시용 정보(이미 본 상품은 상세를 다시 열지 않음)
     newwc = {}
     T0 = T_START
-    maxr = float(crit.get("maxRatio", 1.4)); minL = float(crit.get("minLengthCm", 45)); maxP = float(crit.get("maxPrice", 80000))
+    maxr = float(crit.get("maxRatio", 1.4)); maxP = float(crit.get("maxPrice", 80000))
+    minL = 0  # 사용자 요청 2026-10-23: 목걸이 길이 제한 없음
     au = A.auG
     order = items_max_order
     DISC = {}  # 상품 id -> (정가 또는 None, 할인 표시) : 할인 상품은 가성비 기준을 0.3배 넓혀서 본다
     SALE_EXTRA = float(crit.get("saleExtra", 0.3))
+    ptmax = float((crit.get("pt") or {}).get("maxRatio", 1.7))
+
+    def is_pt(inf):
+        return str(inf[3]).startswith("Pt")
+
+    BR = set()  # 브랜드 상품 id (검색 결과 상품명 기준)
+    TS = set()  # 취향 디자인 상품 id
+
+    def thr_of(did, inf):
+        t = (ptmax if is_pt(inf) else maxr) + (SALE_EXTRA if did in DISC else 0)
+        if did in DISC and did in BR: return max(t, BRAND_CAP)
+        if did in DISC and did in TS and inf[5] > 0: return max(t, TASTE_CAP)
+        return t
 
     def ratio(price, inf):
-        return price / (inf[0] * inf[2] * au + inf[5])
+        return price / (inf[0] * inf[2] * (A.ptG if is_pt(inf) else au) + inf[5])
 
     def consider(site, did, url, price, inf, avail, extra):
         nonlocal order
         if not inf or not price or price > maxP or not len_ok(inf[4], inf[1], minL): return
         r = ratio(price, inf)
         if callable(avail):
-            if r > maxr + (SALE_EXTRA if did in DISC else 0) or did in alerted or url in existing_urls: return
+            if r > thr_of(did, inf) or did in alerted or (url in existing_urls or did in existing_urls): return
             d2 = avail()
             if not d2.get("ok") or d2.get("status") != "판매중": return
             price = d2.get("price") or price
@@ -405,8 +460,8 @@ def watch_scan(existing_urls, alerted, crit, items_max_order, quick=False):
         line = f"{site} {did[1:]} {inf[3]} {KIND_LABEL[inf[4]]} ¥{price:,} {inf[0]:g}g {r:.2f}배"
         if site not in best or r < best[site][0]:
             best[site] = (r, line)
-        thr = maxr + (SALE_EXTRA if did in DISC else 0)
-        if r <= thr and did not in alerted and url not in existing_urls:
+        thr = thr_of(did, inf)
+        if r <= thr and did not in alerted and (url not in existing_urls and did not in existing_urls):
             order += 1
             w, L, pur, mat, kind, sv, sb, stl = inf
             neck = kind in ("목걸이", "체인")
@@ -420,12 +475,16 @@ def watch_scan(existing_urls, alerted, crit, items_max_order, quick=False):
                    "condition": extra.get("rank", ""), "store": extra.get("store", ""),
                    "note": f"새 입고 감시로 자동 추가 (가성비 {r:.2f}배, K18·K14·¥8만 이하)",
                    "valueNote": "원석 가치는 대략적인 추정치" if sv else "원석 없는 금 제품이라 금값 비교가 정확한 편"}
+            if is_pt(inf):
+                doc["ptWatch"] = True
+                doc["note"] = f"플래티넘 감시로 자동 추가 (가성비 {r:.2f}배, Pt900·Pt850 다이아·유색석·¥8만 이하)"
+                doc["valueNote"] = "플래티넘 시세 기준 · 원석 가치는 대략적인 추정치"
             if did in DISC:
                 orig, tag = DISC[did]
                 if orig and orig > price:
                     doc["origPrice"] = orig; tag = f"할인 {round((1 - price / orig) * 100)}% (정가 ¥{orig:,})"
                 doc["saleTag"] = tag
-                doc["note"] = f"할인 상품 감시로 자동 추가 ({tag}, 가성비 {r:.2f}배)"
+                doc["note"] = f"{'브랜드 ' if did in BR else ('취향 디자인 ' if did in TS else '')}할인 상품 감시로 자동 추가 ({tag}, 가성비 {r:.2f}배)"
             found.append((did, doc, extra.get("img", ""), r))
 
     # 비슷한 디자인 감시 (사용자 요청 2026-10-22: 품절된 그리버 197074와 비슷한 밀그레인 다이아 목걸이)
@@ -439,7 +498,7 @@ def watch_scan(existing_urls, alerted, crit, items_max_order, quick=False):
     def add_design(site, did, url, price, inf, extra):
         nonlocal order
         if not inf or inf[4] not in ("목걸이", "펜던트") or not price or price > dmaxP: return
-        if did in alerted or url in existing_urls or any(f[0] == did for f in found): return
+        if did in alerted or (url in existing_urls or did in existing_urls) or any(f[0] == did for f in found): return
         order += 1
         w, L, pur, mat, kind, sv, sb, stl = inf
         title = f"{mat} {stl + ' ' if stl else ''}밀그레인 {KIND_LABEL[kind]}" + (f" {L:g}cm" if L else "") + f" ({w:g}g)"
@@ -477,9 +536,16 @@ def watch_scan(existing_urls, alerted, crit, items_max_order, quick=False):
     # (1) 코메효
     try:
         cands = {}
-        for q in queries:
-            for page in ((1,) if quick else (1, 2, 3)):
-                code, _, t = curl("https://komehyo.jp/search/?" + urllib.parse.urlencode({"q": q, "sortKey": "01", "page": page}))
+        # 할인 상품(discount=0)은 회차마다 4개 검색어씩 돌아가며 끝 페이지까지 (사용자 요청 2026-10-23)
+        kq = [f"{k} {c}" for c in ("ネックレス", "ブレスレット", "ペンダント", "ピアス") for k in ("K18", "K14")]
+        ki = int(crit.get("kDeepIdx", 0) or 0) % len(kq)
+        kdeep = [] if quick else [(kq[(ki + j) % len(kq)], tuple(range(1, 8)), True) for j in range(4)]
+        crit["_kDeepIdx"] = (ki + 4) % len(kq)
+        for q, pages, dsc in [(q, (1,) if quick else (1, 2, 3), False) for q in queries] + kdeep:
+            for page in pages:
+                prm = {"q": q, "sortKey": "01", "page": page}
+                if dsc: prm["discount"] = 0
+                code, _, t = curl("https://komehyo.jp/search/?" + urllib.parse.urlencode(prm))
                 if code != 200: raise RuntimeError("komehyo search")
                 cards = t.split('class="p-lists__item"')[1:]
                 for c in cards:
@@ -490,12 +556,15 @@ def watch_scan(existing_urls, alerted, crit, items_max_order, quick=False):
                     if not (h and nm and pr): continue
                     name = html.unescape(nm.group(1)).strip()
                     price = num(pr[0])
-                    if not price or price > maxP or not gold_info(name)[0] or not classify(name): continue
+                    if not price or price > maxP or not metal_info(name)[0] or not classify(name): continue
                     L = max_len(sz.group(1) if sz else "")
                     if classify(name) in ("목걸이", "체인") and L and L < minL: continue
                     cands[h.group(1)] = (name, price, L)
-                    if "price-sale" in c and len(pr) > 1 and max(num(x) for x in pr) > price:
-                        DISC["k" + re.sub(r"\D", "", h.group(1))] = (max(num(x) for x in pr), "할인")
+                    if re.search(BRAND_RE, name): BR.add("k" + re.sub(r"\D", "", h.group(1)))
+                    if re.search(TASTE_RE, name): TS.add("k" + re.sub(r"\D", "", h.group(1)))
+                    ob = re.search(r'strikethrough">￥([\d,]+)', c)  # 정가(취소선)가 있으면 할인 상품
+                    if ob and num(ob.group(1)) > price:
+                        DISC["k" + re.sub(r"\D", "", h.group(1))] = (num(ob.group(1)), "할인")
                 if len(cards) < 50: break
         for path, (name, price, L) in cands.items():
             url = "https://komehyo.jp" + path
@@ -504,7 +573,7 @@ def watch_scan(existing_urls, alerted, crit, items_max_order, quick=False):
                 newwc[did] = wc[did]
                 consider("코메효", did, url, price, wc[did], (lambda u=url: kd(u)), {})
                 continue
-            if time.time() - T0 > 260: continue  # 시간 초과 방지: 나머지는 다음 실행 때 확인
+            if time.time() - T0 > 200: continue  # 시간 초과 방지: 나머지는 다음 실행 때 확인
             d = kd(url)
             if not d.get("ok"): continue
             kind = classify(name + " " + (d.get("jpTitle") or ""))
@@ -522,9 +591,14 @@ def watch_scan(existing_urls, alerted, crit, items_max_order, quick=False):
     # (2) 그리버
     try:
         cands = {}
-        for q in queries:
-            for page in ((1,) if quick else (1, 2)):
+        # 최신 2쪽 + 할인(値下げ) 상품은 매 회차 4쪽씩 돌아가며 끝까지 훑는다 (사용자 요청 2026-10-23: 오래된 할인 상품 누락 방지)
+        gp = int(crit.get("gDeepPage", 1) or 1)
+        deep = [] if quick else [(f"値下げ {c}", tuple(range(gp, gp + 4))) for c in ("ネックレス", "ブレスレット", "ペンダント", "ピアス")]
+        maxdeep = 0
+        for q, pages in [(q, (1,) if quick else (1, 2)) for q in queries] + deep:
+            for page in pages:
                 code, _, t = curl("https://www.greeber.net/p/search?" + urllib.parse.urlencode({"keyword": q, "sort": "latest", "page": page}))
+                if q.startswith("値下げ") and t.count("fs-c-productListItem__imageContainer") >= 50: maxdeep = max(maxdeep, page)
                 if code != 200: raise RuntimeError("greeber search")
                 for c in t.split("fs-c-productListItem__imageContainer")[1:]:
                     h = re.search(r'href="(/c/[a-z]+/\d+)"', c)
@@ -533,10 +607,13 @@ def watch_scan(existing_urls, alerted, crit, items_max_order, quick=False):
                     if not (h and nm and pr): continue
                     name = html.unescape(nm.group(1)).strip()
                     price = num(pr.group(1))
-                    if not price or price > maxP or not gold_info(name)[0] or not classify(name): continue
+                    if not price or price > maxP or not metal_info(name)[0] or not classify(name): continue
                     cands[h.group(1)] = (name, price)
-                    if "値下" in c:
+                    if re.search(BRAND_RE, name): BR.add("g" + h.group(1).rsplit("/", 1)[1])
+                    if re.search(TASTE_RE, name): TS.add("g" + h.group(1).rsplit("/", 1)[1])
+                    if "値下" in c or "値下" in name:
                         DISC["g" + h.group(1).rsplit("/", 1)[1]] = (None, "가격 인하 상품(値下げ品)")
+        crit["_gDeepPage"] = (gp + 4) if maxdeep >= gp + 3 else 1
         for path, (name, price) in cands.items():
             url = "https://www.greeber.net" + path
             did = "g" + path.rsplit("/", 1)[1]
@@ -544,7 +621,7 @@ def watch_scan(existing_urls, alerted, crit, items_max_order, quick=False):
                 newwc[did] = wc[did]
                 consider("그리버", did, url, price, wc[did], (lambda u=url: gd(u)), {})
                 continue
-            if time.time() - T0 > 380: continue
+            if time.time() - T0 > 320: continue
             d = gd(url)
             if not d.get("ok"): continue
             kind = classify(name)
@@ -580,9 +657,9 @@ def watch_scan(existing_urls, alerted, crit, items_max_order, quick=False):
                             pr = re.search(r'fs-c-price__value">([\d,]+)<', c)
                             if h and nm and pr: cands["https://www.greeber.net" + h.group(1)] = ("g" + h.group(1).rsplit("/", 1)[1], html.unescape(nm.group(1)).strip(), num(pr.group(1)))
                 for url, (did, name, price) in cands.items():
-                    if did in dseen or did in alerted or url in existing_urls: continue
-                    if not price or price > dmaxP or not gold_info(name)[0] or classify(name) not in ("목걸이", "펜던트"): continue
-                    if time.time() - T0 > 470: break
+                    if did in dseen or did in alerted or (url in existing_urls or did in existing_urls): continue
+                    if not price or price > dmaxP or not metal_info(name)[0] or classify(name) not in ("목걸이", "펜던트"): continue
+                    if time.time() - T0 > 390: break
                     d = fn(url)
                     if not d.get("ok"): continue
                     if d.get("status") != "판매중": continue  # 품절이면 다음에 다시 봄
@@ -602,7 +679,7 @@ def watch_scan(existing_urls, alerted, crit, items_max_order, quick=False):
     # (3) 셀비 (전체 상품 목록을 한 번에 훑음)
     try:
         for col, page in ([("necklaces", 1), ("bracelets", 1), ("pierces", 1)] if quick else [("all", p) for p in range(1, 40)]):
-            if time.time() - T0 > 520: break
+            if time.time() - T0 > 440: break
             ps = None
             for k in range(4):
                 code, _, t = curl(f"https://www.selby.shop/collections/{col}/products.json?limit=250&page={page}")
@@ -621,17 +698,19 @@ def watch_scan(existing_urls, alerted, crit, items_max_order, quick=False):
                 if not kind: continue
                 b = text_of(x.get("body_html") or "")
                 if re.search(r"中空|ホロー|パイプ", b[:3000]): continue
-                pur = gold_info(ti)[0] or gold_info(b[:3000])[0]
+                pur = metal_info(ti)[0] or metal_info(b[:3000])[0]
                 if not pur: continue
                 price = round(float(x["variants"][0]["price"]))
                 cap = x["variants"][0].get("compare_at_price")
+                if re.search(BRAND_RE, ti): BR.add("s" + x["handle"].replace("-", ""))
+                if re.search(TASTE_RE, ti): TS.add("s" + x["handle"].replace("-", ""))
                 if cap and float(cap) > price * 1.05:
                     DISC["s" + x["handle"].replace("-", "")] = (round(float(cap)), "할인")
                 if price > maxP: continue
                 w = re.search(r"重量[^\d]{0,15}([\d.]+)\s*g", b); L = re.search(r"(?:チェーンの長さ|長さ)[^\d]{0,15}([\d.]+)\s*cm", b)
                 if not w: continue
                 stn = re.search(r"(?:石|ダイヤ)[^ ]{0,10}[：:]\s*([^ ]{1,40})", b)
-                inf = info_from(kind, ti, ti if gold_info(ti)[0] else b[:3000], w.group(1), float(L.group(1)) if L else 0,
+                inf = info_from(kind, ti, ti if metal_info(ti)[0] else b[:3000], w.group(1), float(L.group(1)) if L else 0,
                                 (stn.group(1) if stn else "") + (" ダイヤ" if "ダイヤ" in ti else ""))
                 avail = any(v.get("available") for v in x.get("variants", []))
                 url = "https://www.selby.shop/products/" + x["handle"]
@@ -673,12 +752,29 @@ def main():
 
     fresh = fetch_rates(meta)
     plan = {"update": [], "set": [], "images": [], "manual": [], "pending": [], "unknown": []}
-    events = {"fav": [], "new_watch": [], "similar": [], "down": [], "sold": [], "up": [], "other": []}
+    events = {"fav": [], "new_watch": [], "pt_watch": [], "similar": [], "down": [], "sold": [], "up": [], "other": []}
 
     def write(coll, did, data):
         p = os.path.join(A.out, "writes", f"{coll}__{did}.json")
         json.dump(data, open(p, "w"), ensure_ascii=False)
         return p
+
+    # 등록된 상품 확인은 사이트별로 동시에 몇 개씩 (사용자 요청 2026-10-23: 회차가 10분을 넘지 않게)
+    from concurrent.futures import ThreadPoolExecutor
+    PRE = {}
+    def _pre(did_it):
+        did, it = did_it
+        site = site_of(it.get("url", ""))
+        fill = site == "셀비" and not it.get("condition")
+        try:
+            return did, (FETCH[site](it["url"], detail=True) if fill else FETCH[site](it["url"]))
+        except Exception:
+            return did, {"ok": False}
+    for sname in ("코메효", "그리버", "셀비"):
+        todo = [(d, i) for d, i in items.items() if not i.get("pending") and site_of(i.get("url", "")) == sname]
+        with ThreadPoolExecutor(max_workers=4) as ex:
+            for did, r in ex.map(_pre, todo): PRE[did] = r
+    print(f"[time] items {time.time()-T_START:.0f}s", file=sys.stderr)
 
     for did, it in sorted(items.items(), key=lambda kv: kv[1].get("order") or 0):
         site = site_of(it.get("url", ""))
@@ -699,7 +795,7 @@ def main():
                                    "currency": it.get("currency"), "status": it.get("status"), "fav": bool(it.get("fav"))})
             continue
         fill = site == "셀비" and not it.get("condition")
-        d = FETCH[site](it["url"], detail=True) if fill else FETCH[site](it["url"])
+        d = PRE.get(did) or {"ok": False}
         if not d.get("ok"):
             plan["unknown"].append(f"{it.get('site')} {it.get('title')}"); continue
         price = d["price"] if d.get("price") is not None else it.get("price")
@@ -726,7 +822,7 @@ def main():
     watch = meta.get("watch", {})
     found, best, wfail, newwc = ([], {}, [], None)
     if not A.no_watch and watch:
-        urls = {it.get("url") for it in items.values()}
+        urls = {it.get("url") for it in items.values()} | set(items)  # 문서 id도 함께 (같은 상품이 다른 주소로 등록된 경우 중복 방지)
         max_order = max([it.get("order") or 0 for it in items.values()] + [0])
         found, best, wfail, newwc = watch_scan(urls, set(watch.get("alerted", [])), watch, max_order)
         alerted = list(watch.get("alerted", []))
@@ -741,12 +837,15 @@ def main():
             if doc.get("similarTo"):
                 events["similar"].append(f"{doc['site']} {doc['title']} · " + describe(doc) + "".join(" · " + x for x in (doc['size'], doc['store']) if x) + f"\n  {doc['url']}")
                 continue
-            events["new_watch"].append(f"{'할인 ' if doc.get('saleTag') else ''}새 입고: {doc['site']} {doc['title']} · " + (doc['saleTag'] + " · " if doc.get('saleTag') else "") + describe(doc) + "".join(" · " + x for x in (doc['size'], doc['store']) if x) + f"\n  {doc['url']}")
+            events["pt_watch" if doc.get("ptWatch") else "new_watch"].append(f"{'할인 ' if doc.get('saleTag') else ''}{'플래티넘 ' if doc.get('ptWatch') else ''}새 입고: {doc['site']} {doc['title']} · " + (doc['saleTag'] + " · " if doc.get('saleTag') else "") + describe(doc) + "".join(" · " + x for x in (doc['size'], doc['store']) if x) + f"\n  {doc['url']}")
         wdata = {"lastScan": A.now, "alerted": alerted, "wcache": newwc, "wver": 4, "maxPrice": int(watch.get("maxPrice", 80000)),
-                 "criteria": "K18·K14 골드(색상 무관) 목걸이(45cm 이상)·팔찌·펜던트·귀걸이(찝는 형식 제외), 할로우(속 빈) 제품 제외, 가성비(금+원석 추정 가치 대비) 1.40배 이하(할인 상품은 1.70배 이하), ¥80,000 이하 · 코메효 → 그리버 → 셀비"}
+                 "minLengthCm": 0, "gDeepPage": watch.get("_gDeepPage", 1), "kDeepIdx": watch.get("_kDeepIdx", 0),
+                 "criteria": "K18·K14 골드(색상 무관) 목걸이(길이 제한 없음)·팔찌·펜던트·귀걸이(찝는 형식 제외), 할로우(속 빈) 제품 제외, 가성비(금+원석 추정 가치 대비) 1.40배 이하(할인 상품은 1.70배 이하, 브랜드 할인 상품은 2.30배, 취향 디자인 할인 상품은 2.00배 이하), ¥80,000 이하 · 코메효·그리버(할인 상품은 전체 페이지 순환) → 셀비"}
+        wdata["pt"] = dict(watch.get("pt") or {}, maxRatio=float((watch.get("pt") or {}).get("maxRatio", 1.7)),
+                           criteria="Pt900·Pt850 다이아 또는 귀한 유색석(루비·사파이어·에메랄드·알렉산드라이트·파라이바·탄자나이트·스피넬 등) 목걸이(길이 제한 없음)·펜던트·팔찌, 가성비(플래티넘+원석 추정 가치 대비) 1.70배 이하(할인 2.00배, 브랜드 할인 2.30배 이하), ¥80,000 이하")
         wdata["design"] = dict(watch.get("design") or {}, on=(watch.get("design") or {}).get("on", True), maxPrice=int((watch.get("design") or {}).get("maxPrice", 50000)),
                                seen=watch.get("_dseen", []), ref="g197074",
-                               criteria="밀그레인(ミルグレイン·ミル打ち) + 다이아 목걸이·펜던트, K18·K14(색상 무관), ¥50,000 이하, 길이 제한 없음 · 코메효·그리버·셀비")
+                               criteria="밀그레인(ミルグレイン·ミル打ち) + 다이아 목걸이·펜던트, K18·K14(색상 무관)·Pt900·Pt850, ¥50,000 이하, 길이 제한 없음 · 코메효·그리버·셀비")
         if best: wdata["lastBest"] = " / ".join(v[1] for k, v in sorted(best.items(), key=lambda kv: {"코메효": 0, "그리버": 1, "셀비": 2}[kv[0]]))
         plan["update"].append({"collection": "meta", "doc_id": "watch", "file_path": write("meta", "watch", wdata)})
 
@@ -788,14 +887,23 @@ def main():
         if ok and not it.get("mustBuy"):
             events["must"].append(f"{'★ ' if cur.get('fav') else ''}{cur.get('site')} {cur.get('title')} · " + describe(cur) + f" · {why}\n  {cur.get('url')}")
 
+    # 사이트 이벤트(쿠폰·무료배송·포인트·세일) — 사용자 요청 2026-10-23
+    ev_new = []
+    try:
+        evdoc, ev_new = scan_events(meta.get("events") or {})
+        plan["update"].append({"collection": "meta", "doc_id": "events", "file_path": write("meta", "events", evdoc)})
+    except Exception as e:
+        print(f"[events] {e}", file=sys.stderr)
+
     # meta/fx·metal·run
     if fresh.get("metal"):
         plan["update"].append({"collection": "meta", "doc_id": "metal", "file_path": write("meta", "metal", {"auG": A.auG, "ptG": A.ptG, "checkedAt": A.now, "rateDate": A.metalDate, "source": "다나카귀금속 소매가(세금 포함, 1g)"})})
     if fresh.get("fx"):
         plan["update"].append({"collection": "meta", "doc_id": "fx", "file_path": write("meta", "fx", {"jpyKrw": A.jpyKrw, "usdKrw": A.usdKrw, "checkedAt": A.now, "rateDate": A.fxDate, "source": "Frankfurter (ECB)"})})
+    events["event"] = [f"{e['site']} · {e['text']}" + (f"\n  {e['url']}" if e.get("url") else "") for e in ev_new]
     n_changes = sum(len(v) for v in events.values())
     summary_bits = []
-    for k, lab in (("must", "꼭 사야 할 템"), ("fav", "즐겨찾기 변동"), ("new_watch", "새 입고"), ("similar", "비슷한 디자인"), ("down", "인하·재판매"), ("sold", "품절"), ("up", "인상")):
+    for k, lab in (("event", "새 이벤트"), ("must", "꼭 사야 할 템"), ("fav", "즐겨찾기 변동"), ("new_watch", "새 입고"), ("pt_watch", "플래티넘 새 입고"), ("similar", "비슷한 디자인"), ("down", "인하·재판매"), ("sold", "품절"), ("up", "인상")):
         if events[k]: summary_bits.append(f"{lab} {len(events[k])}")
     run = {"lastRun": A.now}
     if n_changes: run["lastChange"] = " · ".join(summary_bits)
@@ -803,8 +911,8 @@ def main():
 
     # 알림 초안
     msg = []
-    titles = {"must": "꼭 사야 할 템 (가성비 1.10배 이하 · S·A급 · 최근 가격 인하 중 2개 이상)", "fav": "즐겨찾기", "new_watch": "새 입고 (K18·K14 목걸이·팔찌·펜던트·귀걸이, 가성비 1.40배 이하 · 할인 상품은 1.70배 이하 · ¥8만 이하)", "similar": "비슷한 디자인 (품절된 그리버 밀그레인 다이아 목걸이와 비슷 · ¥5만 이하)", "down": "가격 인하·재판매", "sold": "품절", "up": "가격 인상", "other": "기타 변동"}
-    for k in ("must", "fav", "similar", "new_watch", "down", "sold", "up", "other"):
+    titles = {"must": "꼭 사야 할 템 (가성비 1.10배 이하 · S·A급 · 최근 가격 인하 중 2개 이상)", "fav": "즐겨찾기", "new_watch": "새 입고 (K18·K14 목걸이·팔찌·펜던트·귀걸이, 가성비 1.40배 이하 · 할인 상품은 1.70배 · 취향 디자인 할인은 2.00배 · 브랜드 할인은 2.30배 이하 · ¥8만 이하)", "pt_watch": "플래티넘 새 입고 (Pt900·Pt850 다이아·귀한 유색석 목걸이·펜던트·팔찌, 가성비 1.70배 이하 · 할인 2.00배 · 브랜드 할인 2.30배 이하 · ¥8만 이하)", "similar": "비슷한 디자인 (품절된 그리버 밀그레인 다이아 목걸이와 비슷 · ¥5만 이하)", "down": "가격 인하·재판매", "sold": "품절", "up": "가격 인상", "other": "기타 변동", "event": "사이트 새 이벤트 (쿠폰·무료배송·포인트·세일) — 원문은 일본어"}
+    for k in ("event", "must", "fav", "similar", "new_watch", "pt_watch", "down", "sold", "up", "other"):
         if events[k]:
             msg.append(f"**{titles[k]}**")
             msg += ["- " + e for e in events[k]]
@@ -812,9 +920,9 @@ def main():
     tail = []
     if plan["unknown"]: tail.append("확인 불가: " + ", ".join(plan["unknown"]))
     if wfail: tail.append("새 입고 감시 확인 불가: " + ", ".join(wfail))
-    first = ([("꼭 사야 할 템: " + e) for e in events["must"]] + events["fav"] + [("비슷한 디자인: " + e) for e in events["similar"]] + events["new_watch"] + events["down"] + events["sold"] + events["up"] + events["other"] + [""])[0].split("\n")[0]
+    first = ([("새 이벤트: " + e) for e in events["event"]] + [("꼭 사야 할 템: " + e) for e in events["must"]] + events["fav"] + [("비슷한 디자인: " + e) for e in events["similar"]] + events["new_watch"] + events["pt_watch"] + events["down"] + events["sold"] + events["up"] + events["other"] + [""])[0].split("\n")[0]
     if msg:
-        msg = [first, ""] + msg + tail + ["", f"적용 환율: ¥100 = ₩{A.jpyKrw * 100:,.0f}, US$1 = ₩{A.usdKrw:,.0f} · 금 ¥{A.auG:,.0f}/g",
+        msg = [first, ""] + msg + tail + ["", f"적용 환율: ¥100 = ₩{A.jpyKrw * 100:,.0f}, US$1 = ₩{A.usdKrw:,.0f} · 금 ¥{A.auG:,.0f}/g · 플래티넘 ¥{A.ptG:,.0f}/g",
                                           "리스트: https://claude.ai/artifact/C2sX8ERzSBzHYC7zHyn6Yf"]
     open(os.path.join(A.out, "message.md"), "w").write("\n".join(msg))
     short = re.sub(r" · 가성비.*", "", first)[:140]
@@ -826,7 +934,66 @@ def main():
                       "manual": [m["id"] for m in plan["manual"]], "unknown": plan["unknown"], "watchFail": wfail,
                       "rates": {"jpyKrw": A.jpyKrw, "usdKrw": A.usdKrw, "auG": A.auG, "ptG": A.ptG, "fxNew": bool(fresh.get("fx")), "metalNew": bool(fresh.get("metal"))},
                       "updates": [u["collection"] + "/" + u["doc_id"] for u in plan["update"]],
-                      "sets": [s["doc_id"] for s in plan["set"]], "images": plan["images"]}, ensure_ascii=False))
+                      "sets": [s["doc_id"] for s in plan["set"]], "images": plan["images"], "eventsNew": [e["id"] for e in ev_new]}, ensure_ascii=False))
+
+
+EV_PAGES = [("셀비", "https://www.selby.shop/"), ("그리버", "https://www.greeber.net/"), ("코메효", "https://komehyo.jp/")]
+EV_KW = r"クーポン|送料無料|キャンペーン|ポイント\s*\d+\s*倍|\d+\s*倍|[\d,]+\s*円\s*(?:分|OFF|オフ|引)|[¥￥][\d,]+\s*(?:OFF|オフ)|\d+\s*[%％]\s*(?:OFF|オフ)|セール開催|SALE開催|タイムセール|期間限定"
+EV_SKIP = r"買取|査定|ローン|無金利|ファッション|時計|バッグ|財布|instagram|受け取る|お知らせを受|について$|から探す|のすべて|^開催中のキャンペーン$|セールアイテム|VESCA"
+
+
+def _ev_dates_ok(t, now):
+    """'9/5[sat]-9/27[sun]' 같은 기간이 있으면 오늘이 그 안(또는 60일 안에 시작)인지 본다."""
+    m = re.search(r"(\d{1,2})/(\d{1,2})\D{0,8}?[-~〜～]\s*(?:(\d{1,2})/)?(\d{1,2})", t)
+    if not m: return True
+    y, mo, dd = int(now[:4]), int(now[5:7]), int(now[8:10])
+    import datetime as _d
+    today = _d.date(y, mo, dd)
+    try:
+        sm, sd = int(m.group(1)), int(m.group(2)); em, ed = int(m.group(3) or sm), int(m.group(4))
+        best = None
+        for yy in (y - 1, y, y + 1):
+            st = _d.date(yy, sm, sd); en = _d.date(yy + (1 if em < sm else 0), em, ed)
+            if st - _d.timedelta(days=60) <= today <= en: best = True
+        return bool(best)
+    except ValueError:
+        return True
+
+
+def scan_events(old):
+    """각 사이트 첫 화면에서 쿠폰·무료배송·포인트·세일 문구를 모은다. (문서, 새로 보인 이벤트 목록)"""
+    import hashlib
+    now = A.now
+    seen = {e["id"]: e for e in (old.get("items") or [])}
+    cur = []
+    ok_sites = []
+    for site, url in EV_PAGES:
+        code, _, t = curl(url, timeout=30)
+        if code != 200 or not t: continue
+        ok_sites.append(site)
+        body = re.sub(r"<script.*?</script>|<style.*?</style>|<noscript.*?</noscript>", "", t, flags=re.S)
+        lines = [re.sub(r"\s+", " ", html.unescape(x)).strip() for x in re.sub(r"<[^>]+>", "\n", body).split("\n")]
+        lines += [html.unescape(a).strip() for a in re.findall(r'(?:alt|title)="([^"]{4,120})"', t)]
+        for l in dict.fromkeys(lines):
+            if not (5 <= len(l) <= 120) or not re.search(EV_KW, l) or re.search(EV_SKIP, l, re.I): continue
+            if not _ev_dates_ok(l, now): continue
+            eid = hashlib.sha1((site + "|" + l).encode()).hexdigest()[:12]
+            cur.append((eid, site, l, url))
+    out, new = [], []
+    first_run = not seen
+    for eid, site, l, url in cur:
+        e = dict(seen.get(eid) or {"id": eid, "site": site, "text": l, "url": url, "firstSeen": now})
+        e["lastSeen"] = now; e["active"] = True
+        if eid not in seen and not first_run: new.append(e)
+        out.append(e)
+    curids = {c[0] for c in cur}
+    for eid, e in seen.items():
+        if eid in curids: continue
+        e = dict(e)
+        if e.get("site") in ok_sites: e["active"] = False  # 사이트는 열렸는데 문구가 사라짐 → 종료
+        if (e.get("lastSeen") or "") >= now[:8]:  # 너무 오래된 것은 버림(같은 달 안의 것만 기억)
+            out.append(e)
+    return {"items": out[:60], "checkedAt": now, "sites": ok_sites}, new
 
 
 def fetch_rates(meta):
