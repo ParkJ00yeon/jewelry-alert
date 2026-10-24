@@ -11867,7 +11867,7 @@
   },
   "k2300008767492": {
    "addedAt": "2026-10-22T12:55:12.000Z",
-   "checkedAt": "2026-10-22T20:56+09:00",
+   "checkedAt": "2026-10-24T10:31+09:00",
    "condition": "중고 A",
    "currency": "JPY",
    "fav": true,
@@ -11876,6 +11876,11 @@
      "price": 50000,
      "status": "판매중",
      "t": "2026-10-22T20:56+09:00"
+    },
+    {
+     "t": "2026-10-24T10:31+09:00",
+     "price": 50000,
+     "status": "품절"
     }
    ],
    "img": "/_blob/c996110ae2999a55c138e55b2dd413a3",
@@ -11888,7 +11893,7 @@
    "price": 50000,
    "site": "코메효",
    "size": "直径約: 4.4mm",
-   "status": "판매중",
+   "status": "품절",
    "stoneBasis": "다이아 0.38ct × ¥60,000/ct (여러 알 기준)",
    "stoneValue": 22800,
    "stones": "ダイヤモンド 0.38CT",
@@ -12000,7 +12005,7 @@
   },
   "k2300008942271": {
    "addedAt": "2026-10-21T03:04:49.000Z",
-   "checkedAt": "2026-10-21T12:04+09:00",
+   "checkedAt": "2026-10-24T10:31+09:00",
    "condition": "중고 A",
    "currency": "JPY",
    "fav": true,
@@ -12009,6 +12014,11 @@
      "price": 40000,
      "status": "판매중",
      "t": "2026-10-21T12:04+09:00"
+    },
+    {
+     "t": "2026-10-24T10:31+09:00",
+     "price": 40000,
+     "status": "품절"
     }
    ],
    "img": "/_blob/916821eb1ca25534128a88ad42d1b91a",
@@ -12016,14 +12026,12 @@
    "kind": "귀걸이",
    "length": "",
    "material": "K18 옐로우골드",
-   "mustBuy": true,
-   "mustBuyWhy": "가성비 0.78배 · A급",
    "note": "새 입고 감시로 자동 추가 (가성비 0.78배, K18·K14·¥8만 이하)",
    "order": 432,
    "price": 40000,
    "site": "코메효",
    "size": "縦約x横約: 5.3mmx4.6mm",
-   "status": "판매중",
+   "status": "품절",
    "stoneBasis": "다이아 0.59ct × ¥60,000/ct (여러 알 기준)",
    "stoneValue": 35400,
    "stones": "ダイヤモンド 0.59CT",
@@ -12535,6 +12543,39 @@
    "valueNote": "원석 가치는 대략적인 추정치",
    "thumb": "data:image/jpeg;base64,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"
   },
+  "k2600079796798": {
+   "order": 801,
+   "kind": "목걸이",
+   "site": "코메효",
+   "title": "K14 화이트골드 다이아 0.15ct 목걸이 40cm (1.3g)",
+   "jpTitle": "K14WG クロス ダイヤモンド ネックレス 0.15CT",
+   "url": "https://komehyo.jp/product/260-007-979-6798/",
+   "price": 35000,
+   "currency": "JPY",
+   "status": "판매중",
+   "history": [
+    {
+     "t": "2026-10-24T10:31+09:00",
+     "price": 35000,
+     "status": "판매중"
+    }
+   ],
+   "checkedAt": "2026-10-24T10:31+09:00",
+   "addedAt": "2026-10-24T01:31:53.000Z",
+   "img": "",
+   "material": "K14 화이트골드",
+   "weight": "1.3g",
+   "length": "40cm",
+   "size": "체인 폭 약 0.9mm",
+   "stones": "ダイヤモンド 0.15CT",
+   "stoneValue": 9000,
+   "stoneBasis": "다이아 0.15ct × ¥60,000/ct (여러 알 기준)",
+   "condition": "중고 B",
+   "store": "名古屋本店 本館",
+   "note": "새 입고 감시로 자동 추가 (가성비 1.31배, K18·K14·¥8만 이하) · 리스트 페이지에는 Claude 정기 확인 때 추가됨",
+   "valueNote": "원석 가치는 대략적인 추정치",
+   "thumb": "data:image/jpeg;base64,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"
+  },
   "k2600080023890": {
    "addedAt": "2026-10-22T16:55:31.000Z",
    "checkedAt": "2026-10-23T01:55+09:00",
@@ -12639,6 +12680,39 @@
    "url": "https://komehyo.jp/product/260-008-045-8241/",
    "valueNote": "원석 가치는 대략적인 추정치",
    "weight": "2.1g"
+  },
+  "k2600080517948": {
+   "order": 802,
+   "kind": "목걸이",
+   "site": "코메효",
+   "title": "K14 화이트골드 다이아 0.08ct 목걸이 40cm (1.3g)",
+   "jpTitle": "K14WG フラワー ダイヤモンド ネックレス 0.08CT",
+   "url": "https://komehyo.jp/product/260-008-051-7948/",
+   "price": 30000,
+   "currency": "JPY",
+   "status": "판매중",
+   "history": [
+    {
+     "t": "2026-10-24T10:31+09:00",
+     "price": 30000,
+     "status": "판매중"
+    }
+   ],
+   "checkedAt": "2026-10-24T10:31+09:00",
+   "addedAt": "2026-10-24T01:31:53.000Z",
+   "img": "",
+   "material": "K14 화이트골드",
+   "weight": "1.3g",
+   "length": "40cm",
+   "size": "체인 폭 약 0.7mm",
+   "stones": "ダイヤモンド 0.08CT",
+   "stoneValue": 4800,
+   "stoneBasis": "다이아 0.08ct × ¥60,000/ct (여러 알 기준)",
+   "condition": "중고 B",
+   "store": "名古屋本店 本館",
+   "note": "새 입고 감시로 자동 추가 (가성비 1.34배, K18·K14·¥8만 이하) · 리스트 페이지에는 Claude 정기 확인 때 추가됨",
+   "valueNote": "원석 가치는 대략적인 추정치",
+   "thumb": "data:image/jpeg;base64,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"
   },
   "k2600083832208": {
    "addedAt": "2026-10-21T03:14:40.000Z",
@@ -16112,14 +16186,14 @@
  },
  "meta": {
   "events": {
-   "checkedAt": "2026-10-24T08:04+09:00",
+   "checkedAt": "2026-10-24T10:31+09:00",
    "items": [
     {
      "active": true,
      "firstSeen": "2026-10-23T10:40+09:00",
      "id": "f631c2ac93bd",
      "ko": "LINE 친구 추가 시 ¥3,000 할인 쿠폰 증정",
-     "lastSeen": "2026-10-24T08:04+09:00",
+     "lastSeen": "2026-10-24T10:31+09:00",
      "site": "셀비",
      "text": "LINEお友達追加で、¥3,000OFFクーポンを進呈！",
      "url": "https://www.selby.shop/"
@@ -16129,7 +16203,7 @@
      "firstSeen": "2026-10-23T10:40+09:00",
      "id": "ba077cfa03df",
      "ko": "구매 후 리뷰를 쓰면 다음 구매에 쓸 1,000엔 포인트 지급 (상시)",
-     "lastSeen": "2026-10-24T08:04+09:00",
+     "lastSeen": "2026-10-24T10:31+09:00",
      "site": "그리버",
      "text": "次回ご利用頂ける1000円分のポイントが",
      "url": "https://www.greeber.net/"
@@ -16142,7 +16216,7 @@
    ]
   },
   "fx": {
-   "checkedAt": "2026-10-24T08:04+09:00",
+   "checkedAt": "2026-10-24T10:31+09:00",
    "jpyKrw": 8.4466,
    "rateDate": "2026-10-23",
    "source": "Frankfurter (ECB)",
@@ -16156,8 +16230,8 @@
    "source": "다나카귀금속 소매가(세금 포함, 1g)"
   },
   "run": {
-   "lastChange": "즐겨찾기 변동 2",
-   "lastRun": "2026-10-24T08:04+09:00"
+   "lastChange": "즐겨찾기 변동 2 · 새 입고 2",
+   "lastRun": "2026-10-24T10:31+09:00"
   },
   "watch": {
    "alerted": [
@@ -16521,7 +16595,9 @@
     "s260619057",
     "s260625172",
     "g201256",
-    "g201002"
+    "g201002",
+    "k2600079796798",
+    "k2600080517948"
    ],
    "criteria": "K18·K14 골드(색상 무관) 목걸이(길이 제한 없음)·팔찌·펜던트·귀걸이(찝는 형식 제외), 할로우(속 빈) 제품 제외, 가성비(금+원석 추정 가치 대비) 1.40배 이하(할인 상품은 1.70배 이하, 브랜드 할인 상품은 2.30배, 취향 디자인 할인 상품은 2.00배 이하), ¥80,000 이하 · 코메효·그리버(할인 상품은 전체 페이지 순환) → 셀비",
    "design": {
@@ -16537,10 +16613,10 @@
      "g201222"
     ]
    },
-   "gDeepPage": 5,
-   "kDeepIdx": 0,
-   "lastBest": "그리버 197888 K18 화이트골드 귀걸이 ¥17,000 0.3g 0.62배 / 셀비 260410053 K18 화이트골드 귀걸이 ¥65,148 2.5g 0.72배",
-   "lastScan": "2026-10-24T08:04+09:00",
+   "gDeepPage": 9,
+   "kDeepIdx": 4,
+   "lastBest": "코메효 2600079796798 K14 화이트골드 목걸이 ¥35,000 1.3g 1.31배 / 그리버 193073 K18 핑크골드 목걸이 ¥53,000 1.1g 0.93배 / 셀비 260410053 K18 화이트골드 귀걸이 ¥65,148 2.5g 0.72배",
+   "lastScan": "2026-10-24T10:31+09:00",
    "maxPrice": 80000,
    "maxRatio": 1.4,
    "minLengthCm": 0,
@@ -23003,7 +23079,397 @@
      "캐럿 미표기 작은 다이아 약 0.03ct 추정",
      "다이아"
     ],
-    "g179573": null
+    "g179573": null,
+    "k2300009213707": [
+     1.1,
+     40.0,
+     0.75,
+     "K18 옐로우골드",
+     "체인",
+     0,
+     "원석 없음",
+     ""
+    ],
+    "k2600076472114": [
+     1.3,
+     40.0,
+     0.585,
+     "K14 화이트골드",
+     "목걸이",
+     9000,
+     "다이아 0.15ct × ¥60,000/ct (여러 알 기준)",
+     "다이아 0.15ct"
+    ],
+    "k2300002196328": [
+     1.4,
+     40.0,
+     0.585,
+     "K14 화이트골드",
+     "목걸이",
+     4200,
+     "다이아 0.07ct × ¥60,000/ct (여러 알 기준)",
+     "다이아 0.07ct"
+    ],
+    "k2600081506477": [
+     1.2,
+     40.0,
+     0.585,
+     "K14 화이트골드",
+     "목걸이",
+     12000,
+     "다이아 0.20ct × ¥60,000/ct (여러 알 기준)",
+     "다이아 0.20ct"
+    ],
+    "k2600076472121": [
+     1.7,
+     40.0,
+     0.585,
+     "K14 콤비골드",
+     "목걸이",
+     6000,
+     "다이아 0.10ct × ¥60,000/ct (여러 알 기준)",
+     "다이아 0.10ct"
+    ],
+    "k2600071542737": [
+     1.7,
+     40.0,
+     0.585,
+     "K14 화이트골드",
+     "목걸이",
+     7800,
+     "다이아 0.13ct × ¥60,000/ct (여러 알 기준)",
+     "다이아 0.13ct"
+    ],
+    "k2600078917859": [
+     1.3,
+     42.0,
+     0.585,
+     "K14 콤비골드",
+     "목걸이",
+     0,
+     "원석 없음",
+     ""
+    ],
+    "k2600081632237": [
+     1.5,
+     41.0,
+     0.585,
+     "K14 화이트골드",
+     "목걸이",
+     1800,
+     "캐럿 미표기 작은 다이아 약 0.03ct 추정",
+     "다이아"
+    ],
+    "k2600082183295": [
+     1.4,
+     43.0,
+     0.585,
+     "K14 화이트골드",
+     "목걸이",
+     3600,
+     "다이아 0.06ct × ¥60,000/ct (여러 알 기준)",
+     "다이아 0.06ct"
+    ],
+    "k2600079531801": [
+     1.7,
+     40.0,
+     0.585,
+     "K14 화이트골드",
+     "목걸이",
+     500,
+     "유색석(작은 유색석 기준 추정)",
+     "유색석"
+    ],
+    "k2600079810081": [
+     2.2,
+     40.0,
+     0.585,
+     "K14 화이트골드",
+     "목걸이",
+     6000,
+     "다이아 0.10ct × ¥60,000/ct (여러 알 기준)",
+     "다이아 0.10ct"
+    ],
+    "k2600028423102": [
+     1.5,
+     40.0,
+     0.585,
+     "K14 화이트골드",
+     "목걸이",
+     500,
+     "유색석(작은 유색석 기준 추정)",
+     "유색석"
+    ],
+    "k2600077226013": [
+     1.6,
+     41.0,
+     0.585,
+     "K14 화이트골드",
+     "목걸이",
+     500,
+     "유색석(작은 유색석 기준 추정)",
+     "유색석"
+    ],
+    "k2600079796798": [
+     1.3,
+     40.0,
+     0.585,
+     "K14 화이트골드",
+     "목걸이",
+     9000,
+     "다이아 0.15ct × ¥60,000/ct (여러 알 기준)",
+     "다이아 0.15ct"
+    ],
+    "k2600073276029": [
+     1.9,
+     41.0,
+     0.585,
+     "K14 화이트골드",
+     "목걸이",
+     500,
+     "유색석(작은 유색석 기준 추정)",
+     "유색석"
+    ],
+    "k2600080517948": [
+     1.3,
+     40.0,
+     0.585,
+     "K14 화이트골드",
+     "목걸이",
+     4800,
+     "다이아 0.08ct × ¥60,000/ct (여러 알 기준)",
+     "다이아 0.08ct"
+    ],
+    "g194286": null,
+    "g193410": null,
+    "g193219": [
+     1.9,
+     40.0,
+     0.75,
+     "K18 핑크골드",
+     "목걸이",
+     10000,
+     "다이아 0.10ct × ¥100,000/ct",
+     "다이아 0.10ct"
+    ],
+    "g193424": [
+     0.8,
+     40.0,
+     0.75,
+     "K18 옐로우골드",
+     "목걸이",
+     500,
+     "유색석(작은 유색석 기준 추정)",
+     "유색석"
+    ],
+    "g193422": [
+     1.9,
+     40.0,
+     0.75,
+     "K18 골드",
+     "목걸이",
+     500,
+     "유색석(작은 유색석 기준 추정)",
+     "유색석"
+    ],
+    "g194468": null,
+    "g194253": [
+     0.8,
+     40.0,
+     0.75,
+     "K18 옐로우골드",
+     "체인",
+     0,
+     "원석 없음",
+     ""
+    ],
+    "g194412": null,
+    "g194402": [
+     1.0,
+     40.0,
+     0.75,
+     "K18 옐로우골드",
+     "목걸이",
+     2400,
+     "다이아 0.04ct × ¥60,000/ct (여러 알 기준)",
+     "다이아 0.04ct"
+    ],
+    "g194405": [
+     1.5,
+     39.0,
+     0.75,
+     "K18 옐로우골드",
+     "목걸이",
+     1800,
+     "캐럿 미표기 작은 다이아 약 0.03ct 추정",
+     "다이아"
+    ],
+    "g194335": [
+     1.0,
+     41.0,
+     0.75,
+     "K18 핑크골드",
+     "목걸이",
+     1800,
+     "캐럿 미표기 작은 다이아 약 0.03ct 추정",
+     "다이아"
+    ],
+    "g193896": null,
+    "g193756": [
+     2.0,
+     50.0,
+     0.75,
+     "K18 옐로우골드",
+     "체인",
+     0,
+     "원석 없음",
+     ""
+    ],
+    "g194071": [
+     1.9,
+     40.0,
+     0.75,
+     "K18 화이트골드",
+     "목걸이",
+     18000,
+     "다이아 0.30ct × ¥60,000/ct (여러 알 기준)",
+     "다이아 0.30ct"
+    ],
+    "g193848": [
+     2.8,
+     48.0,
+     0.75,
+     "K18 화이트골드",
+     "목걸이",
+     12000,
+     "다이아 0.20ct × ¥60,000/ct (여러 알 기준)",
+     "다이아 0.20ct"
+    ],
+    "g193321": [
+     2.5,
+     40.0,
+     0.75,
+     "K18 화이트골드",
+     "목걸이",
+     12000,
+     "다이아 0.20ct × ¥60,000/ct (여러 알 기준)",
+     "다이아 0.20ct"
+    ],
+    "g193279": null,
+    "g193278": null,
+    "g190892": [
+     2.9,
+     45.0,
+     0.75,
+     "K18 화이트골드",
+     "목걸이",
+     500,
+     "유색석(작은 유색석 기준 추정)",
+     "유색석"
+    ],
+    "g193074": [
+     1.1,
+     44.0,
+     0.75,
+     "K18 옐로우골드",
+     "목걸이",
+     30000,
+     "다이아 0.50ct × ¥60,000/ct (여러 알 기준)",
+     "다이아 0.50ct"
+    ],
+    "g193064": [
+     1.8,
+     40.0,
+     0.75,
+     "K18 옐로우골드",
+     "목걸이",
+     25200,
+     "다이아 0.42ct × ¥60,000/ct (여러 알 기준)",
+     "다이아 0.42ct"
+    ],
+    "g193073": [
+     1.1,
+     44.0,
+     0.75,
+     "K18 핑크골드",
+     "목걸이",
+     37800,
+     "다이아 0.63ct × ¥60,000/ct (여러 알 기준)",
+     "다이아 0.63ct"
+    ],
+    "g193067": null,
+    "g193075": [
+     1.1,
+     44.0,
+     0.75,
+     "K18 핑크골드",
+     "목걸이",
+     30000,
+     "다이아 0.50ct × ¥60,000/ct (여러 알 기준)",
+     "다이아 0.50ct"
+    ],
+    "g193065": null,
+    "g193316": [
+     2.6,
+     45.0,
+     0.75,
+     "K18 화이트골드",
+     "목걸이",
+     30000,
+     "다이아 0.50ct × ¥60,000/ct (여러 알 기준)",
+     "다이아 0.50ct"
+    ],
+    "g193056": [
+     1.6,
+     44.0,
+     0.75,
+     "K18 화이트골드",
+     "목걸이",
+     25000,
+     "다이아 0.25ct × ¥100,000/ct",
+     "다이아 0.25ct"
+    ],
+    "g192505": [
+     2.3,
+     50.0,
+     0.75,
+     "K18 화이트골드",
+     "목걸이",
+     500,
+     "유색석(작은 유색석 기준 추정)",
+     "유색석"
+    ],
+    "g192683": null,
+    "g192725": [
+     1.4,
+     42.0,
+     0.75,
+     "K18 옐로우골드",
+     "목걸이",
+     1800,
+     "캐럿 미표기 작은 다이아 약 0.03ct 추정",
+     "다이아"
+    ],
+    "g190573": [
+     2.2,
+     40.0,
+     0.75,
+     "K18 화이트골드",
+     "목걸이",
+     7200,
+     "다이아 0.12ct × ¥60,000/ct (여러 알 기준)",
+     "다이아 0.12ct"
+    ],
+    "g191233": [
+     1.7,
+     40.0,
+     0.75,
+     "K18 옐로우골드",
+     "목걸이",
+     500,
+     "유색석(작은 유색석 기준 추정)",
+     "유색석"
+    ]
    },
    "wver": 4
   }
