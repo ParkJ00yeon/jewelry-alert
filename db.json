@@ -16481,14 +16481,14 @@
  },
  "meta": {
   "events": {
-   "checkedAt": "2026-10-26T00:02+09:00",
+   "checkedAt": "2026-10-26T03:21+09:00",
    "items": [
     {
      "active": true,
      "firstSeen": "2026-10-23T10:40+09:00",
      "id": "f631c2ac93bd",
      "ko": "LINE 친구 추가 시 ¥3,000 할인 쿠폰 증정",
-     "lastSeen": "2026-10-26T00:02+09:00",
+     "lastSeen": "2026-10-26T03:21+09:00",
      "site": "셀비",
      "text": "LINEお友達追加で、¥3,000OFFクーポンを進呈！",
      "url": "https://www.selby.shop/"
@@ -16498,7 +16498,7 @@
      "firstSeen": "2026-10-23T10:40+09:00",
      "id": "ba077cfa03df",
      "ko": "구매 후 리뷰를 쓰면 다음 구매에 쓸 1,000엔 포인트 지급 (상시)",
-     "lastSeen": "2026-10-26T00:02+09:00",
+     "lastSeen": "2026-10-26T03:21+09:00",
      "site": "그리버",
      "text": "次回ご利用頂ける1000円分のポイントが",
      "url": "https://www.greeber.net/"
@@ -16511,7 +16511,7 @@
    ]
   },
   "fx": {
-   "checkedAt": "2026-10-26T00:02+09:00",
+   "checkedAt": "2026-10-26T03:21+09:00",
    "jpyKrw": 8.4466,
    "rateDate": "2026-10-23",
    "source": "Frankfurter (ECB)",
@@ -16526,7 +16526,7 @@
   },
   "run": {
    "lastChange": "즐겨찾기 변동 1",
-   "lastRun": "2026-10-26T00:02+09:00"
+   "lastRun": "2026-10-26T03:21+09:00"
   },
   "watch": {
    "alerted": [
@@ -16913,10 +16913,10 @@
      "g201222"
     ]
    },
-   "gDeepPage": 1,
-   "kDeepIdx": 4,
+   "gDeepPage": 5,
+   "kDeepIdx": 0,
    "lastBest": "셀비 260623184 K18 화이트골드 펜던트 ¥34,788 1.6g 0.69배",
-   "lastScan": "2026-10-26T00:02+09:00",
+   "lastScan": "2026-10-26T03:21+09:00",
    "maxPrice": 80000,
    "maxRatio": 1.4,
    "minLengthCm": 0,
