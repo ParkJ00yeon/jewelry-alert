@@ -3371,7 +3371,7 @@
   },
   "g190991": {
    "addedAt": "2026-10-22T16:55:31.000Z",
-   "checkedAt": "2026-10-23T01:55+09:00",
+   "checkedAt": "2026-10-27T05:07+09:00",
    "condition": "S",
    "currency": "JPY",
    "history": [
@@ -3379,6 +3379,11 @@
      "price": 79800,
      "status": "판매중",
      "t": "2026-10-23T01:55+09:00"
+    },
+    {
+     "t": "2026-10-27T05:07+09:00",
+     "price": 79800,
+     "status": "품절"
     }
    ],
    "img": "/_blob/7ce039bf40391c8dce48bf5ff794a6c5",
@@ -3393,7 +3398,7 @@
    "saleTag": "가격 인하 상품(値下げ品)",
    "site": "그리버",
    "size": "",
-   "status": "판매중",
+   "status": "품절",
    "stoneBasis": "다이아 0.58ct × ¥60,000/ct (여러 알 기준)",
    "stoneValue": 34800,
    "stones": "ダイヤモンド:総計0.58ct",
@@ -3673,7 +3678,7 @@
   },
   "g191552": {
    "addedAt": "2026-10-22T16:55:31.000Z",
-   "checkedAt": "2026-10-23T01:55+09:00",
+   "checkedAt": "2026-10-27T05:07+09:00",
    "condition": "S",
    "currency": "JPY",
    "history": [
@@ -3681,6 +3686,11 @@
      "price": 53800,
      "status": "판매중",
      "t": "2026-10-23T01:55+09:00"
+    },
+    {
+     "t": "2026-10-27T05:07+09:00",
+     "price": 53800,
+     "status": "품절"
     }
    ],
    "img": "/_blob/cbfdbf1ca24e4800d59ffd6a8fd072be",
@@ -3695,7 +3705,7 @@
    "saleTag": "가격 인하 상품(値下げ品)",
    "site": "그리버",
    "size": "",
-   "status": "판매중",
+   "status": "품절",
    "stoneBasis": "다이아 0.38ct × ¥60,000/ct (여러 알 기준)",
    "stoneValue": 22620,
    "stones": "ダイヤモンド 中石:0.337ct サイズ:直径約4.4mm 脇石:総計0.04ct",
@@ -16598,14 +16608,14 @@
  },
  "meta": {
   "events": {
-   "checkedAt": "2026-10-26T23:09+09:00",
+   "checkedAt": "2026-10-27T05:07+09:00",
    "items": [
     {
      "active": true,
      "firstSeen": "2026-10-23T10:40+09:00",
      "id": "f631c2ac93bd",
      "ko": "LINE 친구 추가 시 ¥3,000 할인 쿠폰 증정",
-     "lastSeen": "2026-10-26T23:09+09:00",
+     "lastSeen": "2026-10-27T05:07+09:00",
      "site": "셀비",
      "text": "LINEお友達追加で、¥3,000OFFクーポンを進呈！",
      "url": "https://www.selby.shop/"
@@ -16615,10 +16625,19 @@
      "firstSeen": "2026-10-23T10:40+09:00",
      "id": "ba077cfa03df",
      "ko": "구매 후 리뷰를 쓰면 다음 구매에 쓸 1,000엔 포인트 지급 (상시)",
-     "lastSeen": "2026-10-26T23:09+09:00",
+     "lastSeen": "2026-10-27T05:07+09:00",
      "site": "그리버",
      "text": "次回ご利用頂ける1000円分のポイントが",
      "url": "https://www.greeber.net/"
+    },
+    {
+     "id": "d02877d0b061",
+     "site": "코메효",
+     "text": "Countdown Week 12/26[FRI]-12/31[WED] LINE友達限定のお得なクーポンをGET",
+     "url": "https://komehyo.jp/",
+     "firstSeen": "2026-10-27T05:07+09:00",
+     "lastSeen": "2026-10-27T05:07+09:00",
+     "active": true
     }
    ],
    "sites": [
@@ -16628,11 +16647,11 @@
    ]
   },
   "fx": {
-   "checkedAt": "2026-10-26T23:09+09:00",
-   "jpyKrw": 8.4466,
-   "rateDate": "2026-10-23",
+   "checkedAt": "2026-10-27T05:07+09:00",
+   "jpyKrw": 8.4174,
+   "rateDate": "2026-10-26",
    "source": "Frankfurter (ECB)",
-   "usdKrw": 1324.45
+   "usdKrw": 1325.28
   },
   "metal": {
    "auG": 23215,
@@ -16642,8 +16661,8 @@
    "source": "다나카귀금속 소매가(세금 포함, 1g)"
   },
   "run": {
-   "lastChange": "꼭 사야 할 템 1 · 새 입고 2 · 품절 1",
-   "lastRun": "2026-10-26T23:09+09:00"
+   "lastChange": "새 이벤트 1 · 품절 2",
+   "lastRun": "2026-10-27T05:07+09:00"
   },
   "watch": {
    "alerted": [
@@ -17033,10 +17052,10 @@
      "g201222"
     ]
    },
-   "gDeepPage": 1,
-   "kDeepIdx": 4,
-   "lastBest": "그리버 203277 K18 화이트골드 귀걸이 ¥49,800 1.2g 0.98배 / 셀비 260410053 K18 화이트골드 귀걸이 ¥65,148 2.5g 0.72배",
-   "lastScan": "2026-10-26T23:09+09:00",
+   "gDeepPage": 5,
+   "kDeepIdx": 0,
+   "lastBest": "셀비 260410053 K18 화이트골드 귀걸이 ¥65,148 2.5g 0.72배",
+   "lastScan": "2026-10-27T05:07+09:00",
    "maxPrice": 80000,
    "maxRatio": 1.4,
    "minLengthCm": 0,
