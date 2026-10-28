@@ -12657,6 +12657,41 @@
    "mustBuy": true,
    "mustBuyWhy": "가성비 0.74배 · A급"
   },
+  "k2300009378222": {
+   "order": 817,
+   "kind": "목걸이",
+   "site": "코메효",
+   "title": "K18 옐로우골드 다이아 0.27ct 목걸이 40cm (0.7g)",
+   "jpTitle": "K18YG ソリティア ダイヤモンド ネックレス 0.27CT",
+   "url": "https://komehyo.jp/product/230-000-937-8222/",
+   "price": 40000,
+   "currency": "JPY",
+   "status": "판매중",
+   "history": [
+    {
+     "t": "2026-10-29T08:08+09:00",
+     "price": 40000,
+     "status": "판매중"
+    }
+   ],
+   "checkedAt": "2026-10-29T08:08+09:00",
+   "addedAt": "2026-10-28T23:08:37.000Z",
+   "img": "",
+   "material": "K18 옐로우골드",
+   "weight": "0.7g",
+   "length": "40cm",
+   "size": "체인 폭 약 0.5mm",
+   "stones": "ダイヤモンド 0.27CT",
+   "stoneValue": 27000,
+   "stoneBasis": "다이아 0.27ct × ¥100,000/ct",
+   "condition": "중고 A",
+   "store": "梅田店",
+   "note": "새 입고 감시로 자동 추가 (가성비 1.02배, K18·K14·¥8만 이하) · 리스트 페이지에는 Claude 정기 확인 때 추가됨",
+   "valueNote": "원석 가치는 대략적인 추정치",
+   "thumb": "data:image/jpeg;base64,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",
+   "mustBuy": true,
+   "mustBuyWhy": "가성비 1.02배 · A급"
+  },
   "k2460004422914": {
    "addedAt": "2026-10-20T05:34:49.443Z",
    "checkedAt": "2026-10-20T18:53+09:00",
@@ -13265,7 +13300,7 @@
   },
   "k2700039875805": {
    "addedAt": "2026-10-22T16:55:31.000Z",
-   "checkedAt": "2026-10-25T20:15+09:00",
+   "checkedAt": "2026-10-29T08:08+09:00",
    "condition": "미사용",
    "currency": "JPY",
    "history": [
@@ -13278,6 +13313,11 @@
      "t": "2026-10-25T20:15+09:00",
      "price": 24000,
      "status": "품절"
+    },
+    {
+     "t": "2026-10-29T08:08+09:00",
+     "price": 24000,
+     "status": "판매중"
     }
    ],
    "img": "/_blob/88dc673b61209077276160a19529a9a4",
@@ -13292,7 +13332,7 @@
    "saleTag": "할인 40% (정가 ¥40,000)",
    "site": "코메효",
    "size": "체인 폭 약 0.6mm",
-   "status": "품절",
+   "status": "판매중",
    "stoneBasis": "다이아 0.16ct × ¥60,000/ct (여러 알 기준)",
    "stoneValue": 9600,
    "stones": "ダイヤモンド 0.16CT",
@@ -13300,7 +13340,9 @@
    "title": "K18 옐로우골드 다이아 0.16ct 목걸이 41cm (0.7g)",
    "url": "https://komehyo.jp/product/270-003-987-5805/",
    "valueNote": "원석 가치는 대략적인 추정치",
-   "weight": "0.7g"
+   "weight": "0.7g",
+   "mustBuy": true,
+   "mustBuyWhy": "미사용 · ¥40,000에서 40% 인하"
   },
   "k2700039875836": {
    "addedAt": "2026-10-20T01:02:27.605Z",
@@ -16873,14 +16915,14 @@
  },
  "meta": {
   "events": {
-   "checkedAt": "2026-10-28T22:28+09:00",
+   "checkedAt": "2026-10-29T08:08+09:00",
    "items": [
     {
      "active": true,
      "firstSeen": "2026-10-23T10:40+09:00",
      "id": "f631c2ac93bd",
      "ko": "LINE 친구 추가 시 ¥3,000 할인 쿠폰 증정",
-     "lastSeen": "2026-10-28T22:28+09:00",
+     "lastSeen": "2026-10-29T08:08+09:00",
      "site": "셀비",
      "text": "LINEお友達追加で、¥3,000OFFクーポンを進呈！",
      "url": "https://www.selby.shop/"
@@ -16890,7 +16932,7 @@
      "firstSeen": "2026-10-23T10:40+09:00",
      "id": "ba077cfa03df",
      "ko": "구매 후 리뷰를 쓰면 다음 구매에 쓸 1,000엔 포인트 지급 (상시)",
-     "lastSeen": "2026-10-28T22:28+09:00",
+     "lastSeen": "2026-10-29T08:08+09:00",
      "site": "그리버",
      "text": "次回ご利用頂ける1000円分のポイントが",
      "url": "https://www.greeber.net/"
@@ -16901,7 +16943,7 @@
      "text": "Countdown Week 12/26[FRI]-12/31[WED] LINE友達限定のお得なクーポンをGET",
      "url": "https://komehyo.jp/",
      "firstSeen": "2026-10-27T05:07+09:00",
-     "lastSeen": "2026-10-28T22:28+09:00",
+     "lastSeen": "2026-10-29T08:08+09:00",
      "active": true
     }
    ],
@@ -16912,11 +16954,11 @@
    ]
   },
   "fx": {
-   "checkedAt": "2026-10-28T22:28+09:00",
-   "jpyKrw": 8.413,
-   "rateDate": "2026-10-27",
+   "checkedAt": "2026-10-29T08:08+09:00",
+   "jpyKrw": 8.486,
+   "rateDate": "2026-10-28",
    "source": "Frankfurter (ECB)",
-   "usdKrw": 1327.75
+   "usdKrw": 1340.47
   },
   "metal": {
    "auG": 23215,
@@ -16926,8 +16968,8 @@
    "source": "다나카귀금속 소매가(세금 포함, 1g)"
   },
   "run": {
-   "lastChange": "즐겨찾기 변동 2",
-   "lastRun": "2026-10-28T22:28+09:00"
+   "lastChange": "꼭 사야 할 템 2 · 새 입고 1 · 인하·재판매 1",
+   "lastRun": "2026-10-29T08:08+09:00"
   },
   "watch": {
    "alerted": [
@@ -17307,7 +17349,8 @@
     "s261002099",
     "s261005008",
     "g202938",
-    "s260803124"
+    "s260803124",
+    "k2300009378222"
    ],
    "criteria": "K18·K14 골드(색상 무관) 목걸이(길이 제한 없음)·팔찌·펜던트·귀걸이(찝는 형식 제외), 할로우(속 빈) 제품 제외, 가성비(금+원석 추정 가치 대비) 1.40배 이하(할인 상품은 1.70배 이하, 브랜드 할인 상품은 2.30배, 취향 디자인 할인 상품은 2.00배 이하), ¥80,000 이하 · 코메효·그리버(할인 상품은 전체 페이지 순환) → 셀비",
    "design": {
@@ -17323,10 +17366,10 @@
      "g201222"
     ]
    },
-   "gDeepPage": 9,
-   "kDeepIdx": 4,
-   "lastBest": "셀비 260410053 K18 화이트골드 귀걸이 ¥65,148 2.5g 0.72배",
-   "lastScan": "2026-10-28T22:28+09:00",
+   "gDeepPage": 1,
+   "kDeepIdx": 0,
+   "lastBest": "코메효 2300009378222 K18 옐로우골드 목걸이 ¥40,000 0.7g 1.02배 / 셀비 260410053 K18 화이트골드 귀걸이 ¥65,148 2.5g 0.72배",
+   "lastScan": "2026-10-29T08:08+09:00",
    "maxPrice": 80000,
    "maxRatio": 1.4,
    "minLengthCm": 0,
@@ -25138,6 +25181,136 @@
      0,
      "원석 없음",
      ""
+    ],
+    "k2700044308299": [
+     2.6,
+     45.0,
+     0.75,
+     "K18 콤비골드",
+     "목걸이",
+     500,
+     "유색석(작은 유색석 기준 추정)",
+     "유색석"
+    ],
+    "k2300009201209": [
+     0.6,
+     41.0,
+     0.75,
+     "K18 핑크골드",
+     "목걸이",
+     3000,
+     "다이아 0.05ct × ¥60,000/ct (여러 알 기준)",
+     "다이아 0.05ct"
+    ],
+    "k2700044332195": [
+     1.7,
+     45.0,
+     0.75,
+     "K18 화이트골드",
+     "목걸이",
+     12480,
+     "다이아 0.21ct × ¥60,000/ct (여러 알 기준)",
+     "다이아 0.21ct"
+    ],
+    "k2300009342957": [
+     1.5,
+     40.0,
+     0.75,
+     "K18 옐로우골드",
+     "목걸이",
+     500,
+     "유색석(작은 유색석 기준 추정)",
+     "유색석"
+    ],
+    "k2300009378222": [
+     0.7,
+     40.0,
+     0.75,
+     "K18 옐로우골드",
+     "목걸이",
+     27000,
+     "다이아 0.27ct × ¥100,000/ct",
+     "다이아 0.27ct"
+    ],
+    "k2300009317917": [
+     0.6,
+     40.0,
+     0.75,
+     "K18 옐로우골드",
+     "목걸이",
+     1800,
+     "캐럿 미표기 작은 다이아 약 0.03ct 추정",
+     "다이아"
+    ],
+    "k2300009202053": [
+     0.6,
+     0,
+     0.75,
+     "K18 핑크골드",
+     "팔찌",
+     6000,
+     "다이아 0.10ct × ¥60,000/ct (여러 알 기준)",
+     "다이아 0.10ct"
+    ],
+    "k2460004659693": [
+     0.6,
+     0,
+     0.75,
+     "K18 옐로우골드",
+     "팔찌",
+     500,
+     "유색석(작은 유색석 기준 추정)",
+     "유색석"
+    ],
+    "k2300009142304": [
+     1.0,
+     0,
+     0.75,
+     "K18 옐로우골드",
+     "팔찌",
+     0,
+     "원석 없음",
+     ""
+    ],
+    "k2300009262712": [
+     1.2,
+     0,
+     0.75,
+     "K18 옐로우골드",
+     "팔찌",
+     0,
+     "원석 없음",
+     ""
+    ],
+    "k2300009186179": [
+     2.4,
+     0,
+     0.75,
+     "K18 옐로우골드",
+     "팔찌",
+     0,
+     "원석 없음",
+     ""
+    ],
+    "k2300009460279": [
+     1.4,
+     0,
+     0.75,
+     "K18 옐로우골드",
+     "펜던트",
+     0,
+     "원석 없음",
+     ""
+    ],
+    "k2300009409605": [
+     0.9,
+     0,
+     0.75,
+     "K18 핑크골드",
+     "귀걸이",
+     7200,
+     "다이아 0.12ct × ¥60,000/ct (여러 알 기준)",
+     "다이아 0.12ct"
     ]
    },
    "wver": 4
