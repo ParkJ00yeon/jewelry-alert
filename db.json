@@ -18379,17 +18379,26 @@
  },
  "meta": {
   "events": {
-   "checkedAt": "2026-11-02T18:20+09:00",
+   "checkedAt": "2026-11-03T04:44+09:00",
    "items": [
     {
      "active": true,
      "firstSeen": "2026-10-23T10:40+09:00",
      "id": "f631c2ac93bd",
      "ko": "LINE 친구 추가 시 ¥3,000 할인 쿠폰 증정",
-     "lastSeen": "2026-11-02T18:20+09:00",
+     "lastSeen": "2026-11-03T04:44+09:00",
      "site": "셀비",
      "text": "LINEお友達追加で、¥3,000OFFクーポンを進呈！",
      "url": "https://www.selby.shop/"
+    },
+    {
+     "id": "d02877d0b061",
+     "site": "코메효",
+     "text": "Countdown Week 12/26[FRI]-12/31[WED] LINE友達限定のお得なクーポンをGET",
+     "url": "https://komehyo.jp/",
+     "firstSeen": "2026-10-27T05:07+09:00",
+     "lastSeen": "2026-11-03T04:44+09:00",
+     "active": true
     },
     {
      "active": true,
@@ -18400,40 +18409,30 @@
      "site": "그리버",
      "text": "次回ご利用頂ける1000円分のポイントが",
      "url": "https://www.greeber.net/"
-    },
-    {
-     "id": "d02877d0b061",
-     "site": "코메효",
-     "text": "Countdown Week 12/26[FRI]-12/31[WED] LINE友達限定のお得なクーポンをGET",
-     "url": "https://komehyo.jp/",
-     "firstSeen": "2026-10-27T05:07+09:00",
-     "lastSeen": "2026-11-02T18:20+09:00",
-     "active": true
     }
    ],
    "sites": [
     "셀비",
-    "그리버",
     "코메효"
    ]
   },
   "fx": {
-   "checkedAt": "2026-11-02T18:20+09:00",
-   "jpyKrw": 8.4913,
-   "rateDate": "2026-10-30",
+   "checkedAt": "2026-11-03T04:44+09:00",
+   "jpyKrw": 8.5048,
+   "rateDate": "2026-11-02",
    "source": "Frankfurter (ECB)",
-   "usdKrw": 1335.27
+   "usdKrw": 1342.9
   },
   "metal": {
    "auG": 22044.0,
-   "checkedAt": "2026-11-02T18:20+09:00",
+   "checkedAt": "2026-11-03T04:44+09:00",
    "ptG": 8266.0,
    "rateDate": "2026-11-02 17:00",
    "source": "다나카귀금속 소매가(세금 포함, 1g)"
   },
   "run": {
    "lastChange": "꼭 사야 할 템 2 · 즐겨찾기 변동 1 · 새 입고 3",
-   "lastRun": "2026-11-02T18:20+09:00"
+   "lastRun": "2026-11-03T04:44+09:00"
   },
   "watch": {
    "alerted": [
@@ -18857,10 +18856,10 @@
      "g201222"
     ]
    },
-   "gDeepPage": 9,
-   "kDeepIdx": 0,
+   "gDeepPage": 1,
+   "kDeepIdx": 4,
    "lastBest": "그리버 203996 K18 옐로우골드 펜던트 ¥79,800 3g 1.61배 / 셀비 260410053 K18 화이트골드 귀걸이 ¥65,148 2.5g 0.74배",
-   "lastScan": "2026-11-02T18:20+09:00",
+   "lastScan": "2026-11-03T04:44+09:00",
    "maxPrice": 80000,
    "maxRatio": 1.4,
    "minLengthCm": 0,
