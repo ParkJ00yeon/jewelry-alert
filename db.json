@@ -10626,7 +10626,7 @@
   },
   "g198344": {
    "addedAt": "2026-10-21T00:31:57.000Z",
-   "checkedAt": "2026-10-21T10:30+09:00",
+   "checkedAt": "2026-11-09T03:28+09:00",
    "condition": "※詳細はランク表をご確認下さい。 S",
    "currency": "JPY",
    "fav": true,
@@ -10635,6 +10635,11 @@
      "price": 69800,
      "status": "판매중",
      "t": "2026-10-21T10:30+09:00"
+    },
+    {
+     "t": "2026-11-09T03:28+09:00",
+     "price": 69800,
+     "status": "품절"
     }
    ],
    "img": "/_blob/9b5d2052390688de73faaa31a92bdb12",
@@ -10642,14 +10647,12 @@
    "kind": "팔찌",
    "length": "",
    "material": "K18 옐로우골드",
-   "mustBuy": true,
-   "mustBuyWhy": "가성비 0.71배 · S급",
    "note": "새 입고 감시로 자동 추가 (가성비 0.70배, K18·K14·¥8만 이하)",
    "order": 338,
    "price": 69800,
    "site": "그리버",
    "size": "",
-   "status": "판매중",
+   "status": "품절",
    "stoneBasis": "유색석(작은 유색석 기준 추정)",
    "stoneValue": 500,
    "stones": "グリーントルマリンct数不明 ※フラクチャーの表面派生や面スレが僅かにございますが、着用時ほぼ肉眼で確認できるレベルではございません。",
@@ -10898,6 +10901,40 @@
    "title": "K18 화이트골드 체인 목걸이 76cm (5g)",
    "url": "https://www.greeber.net/c/blj/199562",
    "weight": "5g"
+  },
+  "g200040": {
+   "order": 858,
+   "kind": "귀걸이",
+   "site": "그리버",
+   "title": "K18 화이트골드 다이아 귀걸이 (1.9g)",
+   "jpTitle": "【ポイントアップ対象商品】ヴァンドーム ピアス ダイヤ ダイヤモンド スクエア K18WG 【中古】BLJ/GENJ",
+   "url": "https://www.greeber.net/c/blj/200040",
+   "price": 69800,
+   "currency": "JPY",
+   "status": "판매중",
+   "history": [
+    {
+     "t": "2026-11-09T03:28+09:00",
+     "price": 69800,
+     "status": "판매중"
+    }
+   ],
+   "checkedAt": "2026-11-09T03:28+09:00",
+   "addedAt": "2026-11-08T18:28:15.000Z",
+   "img": "",
+   "material": "K18 화이트골드",
+   "weight": "1.9g",
+   "length": "",
+   "size": "",
+   "stones": "ダイヤモンドct数不明",
+   "stoneValue": 1800,
+   "stoneBasis": "캐럿 미표기 작은 다이아 약 0.03ct 추정",
+   "condition": "※詳細はランク表をご確認下さい。 A",
+   "store": "",
+   "note": "브랜드 할인 상품 감시로 자동 추가 (가격 인하 상품(値下げ品), 가성비 2.03배) · 리스트 페이지에는 Claude 정기 확인 때 추가됨",
+   "valueNote": "원석 가치는 대략적인 추정치",
+   "saleTag": "가격 인하 상품(値下げ品)",
+   "thumb": "data:image/jpeg;base64,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eaKLf6eAXUDsqHR4S0gkcq/WdMERFFEREBERAWE39k76LNa5jUbvog4TW3fE4UuffQNeIXQ6swmZ9dgapUMkZW0Q8h+0WCo4lO7ghSJonOB81qEDgOyQrYzIPY128uy9lytrPlaCsBCb4Bv1WbsdxrxQaG5LyOQ38lsMsjjY4XoxT5clenGfVUSEGrqON0eR3pbIpTusfdZsxrdbwa9FmMZx5DfXskEqB9tbx/wVpjP+Ic8qsgicKNc34qzwoXF/qUiV1uikmhd1dq5VVo8W0AnuArVZ1rBERQEREBERAREQF475SvV4eRSCmzYg95JVe7FbdkD6eau8iEkkqKYSCBX0XTNc9xTyYYv5eVElwqPLV0Bh5PqtUsHoqRz7sIXVLS/CFnhXxxzuuqWt2MTfCChOED4crA4Q8lfHHPksHQeFIKP3EV2XrcOzY/grnoeiNh+5RUCDHLDwrPGsEeaNirwUmCP4uxUhVrpwBIoVSs1B09lC6U5Y1vBERQEREBERAWueumbWxYSN3s2oOS1WG5HXyqh+OD/dsrp9RxyS4AX+qrTiOoW0kk+S2ypm4jfEArIYcfiFanGIPY+q9OOdvy/okKpRiM6wJZ2UpuJGR2Cne7eYNrL3flItQRhRk9gsjgx1wL9FNEB8PNZ9A+RUhVd7izwYs24UfiFPEJ5KyMR8vskKjMwYwB5KbBisaRRWDonbeApWJE5jRfP1ViVbYLaBNeilrRitLWei3rOtCIigIiICIiAiIgIiIMS0HuF4YmHwWaINfRZ5BYOxmFb0SiIcNpCxOHx4FTUVqRXHBvw4WJwPIKzRLpFS7T6HAKwZp7vEK5XlK9aTFUMAjkALNmHtPjyeVZUvVOtI1Qx7GraiKKIiICIiAiIgLw9l6iDTJAyTkjlajht7igVLRWiC7BaeT+SHAbfACnIlFZFhh+49NzS00N3F+o9FmcBvkPVWCJUiv9wAHgUOBfkp6JViC3BA7lZe4tI5A/JTV4lERuE0H0HZZsxQ0qSiVI8a0NFBeoiiiIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIg//9k="
   },
   "g200066": {
    "addedAt": "2026-10-22T15:10:43.000Z",
@@ -19072,14 +19109,14 @@
  },
  "meta": {
   "events": {
-   "checkedAt": "2026-11-08T22:14+09:00",
+   "checkedAt": "2026-11-09T03:28+09:00",
    "items": [
     {
      "active": true,
      "firstSeen": "2026-10-23T10:40+09:00",
      "id": "f631c2ac93bd",
      "ko": "LINE 친구 추가 시 ¥3,000 할인 쿠폰 증정",
-     "lastSeen": "2026-11-08T22:14+09:00",
+     "lastSeen": "2026-11-09T03:28+09:00",
      "site": "셀비",
      "text": "LINEお友達追加で、¥3,000OFFクーポンを進呈！",
      "url": "https://www.selby.shop/"
@@ -19089,7 +19126,7 @@
      "firstSeen": "2026-10-23T10:40+09:00",
      "id": "ba077cfa03df",
      "ko": "구매 후 리뷰를 쓰면 다음 구매에 쓸 1,000엔 포인트 지급 (상시)",
-     "lastSeen": "2026-11-08T22:14+09:00",
+     "lastSeen": "2026-11-09T03:28+09:00",
      "site": "그리버",
      "text": "次回ご利用頂ける1000円分のポイントが",
      "url": "https://www.greeber.net/"
@@ -19100,7 +19137,7 @@
      "text": "Countdown Week 12/26[FRI]-12/31[WED] LINE友達限定のお得なクーポンをGET",
      "url": "https://komehyo.jp/",
      "firstSeen": "2026-10-27T05:07+09:00",
-     "lastSeen": "2026-11-08T22:14+09:00",
+     "lastSeen": "2026-11-09T03:28+09:00",
      "active": true
     }
    ],
@@ -19111,7 +19148,7 @@
    ]
   },
   "fx": {
-   "checkedAt": "2026-11-08T22:14+09:00",
+   "checkedAt": "2026-11-09T03:28+09:00",
    "jpyKrw": 8.5819,
    "rateDate": "2026-11-06",
    "source": "Frankfurter (ECB)",
@@ -19119,14 +19156,14 @@
   },
   "metal": {
    "auG": 22874.0,
-   "checkedAt": "2026-11-08T22:14+09:00",
+   "checkedAt": "2026-11-09T03:28+09:00",
    "ptG": 8725.0,
    "rateDate": "2026-11-06 17:00",
    "source": "다나카귀금속 소매가(세금 포함, 1g)"
   },
   "run": {
-   "lastChange": "품절 1",
-   "lastRun": "2026-11-08T22:14+09:00"
+   "lastChange": "즐겨찾기 변동 1 · 새 입고 1",
+   "lastRun": "2026-11-09T03:28+09:00"
   },
   "watch": {
    "alerted": [
@@ -19547,7 +19584,8 @@
     "s260811168",
     "g202033",
     "g203137",
-    "g202273"
+    "g202273",
+    "g200040"
    ],
    "criteria": "K18·K14 골드(색상 무관) 목걸이(길이 제한 없음)·팔찌·펜던트·귀걸이(찝는 형식 제외), 할로우(속 빈) 제품 제외, 가성비(금+원석 추정 가치 대비) 1.40배 이하(할인 상품은 1.70배 이하, 브랜드 할인 상품은 2.30배, 취향 디자인 할인 상품은 2.00배 이하), ¥80,000 이하 · 코메효·그리버(할인 상품은 전체 페이지 순환) → 셀비",
    "design": {
@@ -19563,10 +19601,10 @@
      "g201222"
     ]
    },
-   "gDeepPage": 5,
-   "kDeepIdx": 4,
-   "lastBest": "그리버 205834 K18 화이트골드 체인 목걸이 ¥79,800 3g 1.55배 / 셀비 260410053 K18 화이트골드 귀걸이 ¥65,148 2.5g 0.73배",
-   "lastScan": "2026-11-08T22:14+09:00",
+   "gDeepPage": 9,
+   "kDeepIdx": 0,
+   "lastBest": "그리버 200040 K18 화이트골드 귀걸이 ¥69,800 1.9g 2.03배 / 셀비 260410053 K18 화이트골드 귀걸이 ¥65,148 2.5g 0.73배",
+   "lastScan": "2026-11-09T03:28+09:00",
    "maxPrice": 80000,
    "maxRatio": 1.4,
    "minLengthCm": 0,
