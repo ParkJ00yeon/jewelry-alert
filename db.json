@@ -18433,15 +18433,20 @@
    "url": "https://www.selby.shop/products/260819-068",
    "price": 49440,
    "currency": "JPY",
-   "status": "판매중",
+   "status": "품절",
    "history": [
     {
      "t": "2026-10-23T10:49+09:00",
      "price": 49440,
      "status": "판매중"
+    },
+    {
+     "t": "2026-11-08T14:51+09:00",
+     "price": 49440,
+     "status": "품절"
     }
    ],
-   "checkedAt": "2026-10-23T10:49+09:00",
+   "checkedAt": "2026-11-08T14:51+09:00",
    "addedAt": "2026-10-23T01:49:17.000Z",
    "img": "",
    "material": "K18 핑크골드",
@@ -19062,14 +19067,14 @@
  },
  "meta": {
   "events": {
-   "checkedAt": "2026-11-08T08:54+09:00",
+   "checkedAt": "2026-11-08T14:51+09:00",
    "items": [
     {
      "active": true,
      "firstSeen": "2026-10-23T10:40+09:00",
      "id": "f631c2ac93bd",
      "ko": "LINE 친구 추가 시 ¥3,000 할인 쿠폰 증정",
-     "lastSeen": "2026-11-08T08:54+09:00",
+     "lastSeen": "2026-11-08T14:51+09:00",
      "site": "셀비",
      "text": "LINEお友達追加で、¥3,000OFFクーポンを進呈！",
      "url": "https://www.selby.shop/"
@@ -19079,7 +19084,7 @@
      "firstSeen": "2026-10-23T10:40+09:00",
      "id": "ba077cfa03df",
      "ko": "구매 후 리뷰를 쓰면 다음 구매에 쓸 1,000엔 포인트 지급 (상시)",
-     "lastSeen": "2026-11-08T08:54+09:00",
+     "lastSeen": "2026-11-08T14:51+09:00",
      "site": "그리버",
      "text": "次回ご利用頂ける1000円分のポイントが",
      "url": "https://www.greeber.net/"
@@ -19090,7 +19095,7 @@
      "text": "Countdown Week 12/26[FRI]-12/31[WED] LINE友達限定のお得なクーポンをGET",
      "url": "https://komehyo.jp/",
      "firstSeen": "2026-10-27T05:07+09:00",
-     "lastSeen": "2026-11-08T08:54+09:00",
+     "lastSeen": "2026-11-08T14:51+09:00",
      "active": true
     }
    ],
@@ -19101,7 +19106,7 @@
    ]
   },
   "fx": {
-   "checkedAt": "2026-11-08T08:54+09:00",
+   "checkedAt": "2026-11-08T14:51+09:00",
    "jpyKrw": 8.5819,
    "rateDate": "2026-11-06",
    "source": "Frankfurter (ECB)",
@@ -19109,14 +19114,14 @@
   },
   "metal": {
    "auG": 22874.0,
-   "checkedAt": "2026-11-08T08:54+09:00",
+   "checkedAt": "2026-11-08T14:51+09:00",
    "ptG": 8725.0,
    "rateDate": "2026-11-06 17:00",
    "source": "다나카귀금속 소매가(세금 포함, 1g)"
   },
   "run": {
-   "lastChange": "즐겨찾기 변동 1 · 품절 1",
-   "lastRun": "2026-11-08T08:54+09:00"
+   "lastChange": "품절 1",
+   "lastRun": "2026-11-08T14:51+09:00"
   },
   "watch": {
    "alerted": [
@@ -19553,10 +19558,10 @@
      "g201222"
     ]
    },
-   "gDeepPage": 9,
-   "kDeepIdx": 4,
+   "gDeepPage": 1,
+   "kDeepIdx": 0,
    "lastBest": "셀비 260410053 K18 화이트골드 귀걸이 ¥65,148 2.5g 0.73배",
-   "lastScan": "2026-11-08T08:54+09:00",
+   "lastScan": "2026-11-08T14:51+09:00",
    "maxPrice": 80000,
    "maxRatio": 1.4,
    "minLengthCm": 0,
