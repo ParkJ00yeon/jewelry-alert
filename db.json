@@ -19685,14 +19685,14 @@
  },
  "meta": {
   "events": {
-   "checkedAt": "2026-11-12T19:54+09:00",
+   "checkedAt": "2026-11-13T03:49+09:00",
    "items": [
     {
      "active": true,
      "firstSeen": "2026-10-23T10:40+09:00",
      "id": "f631c2ac93bd",
      "ko": "LINE 친구 추가 시 ¥3,000 할인 쿠폰 증정",
-     "lastSeen": "2026-11-12T19:54+09:00",
+     "lastSeen": "2026-11-13T03:49+09:00",
      "site": "셀비",
      "text": "LINEお友達追加で、¥3,000OFFクーポンを進呈！",
      "url": "https://www.selby.shop/"
@@ -19702,7 +19702,7 @@
      "firstSeen": "2026-10-23T10:40+09:00",
      "id": "ba077cfa03df",
      "ko": "구매 후 리뷰를 쓰면 다음 구매에 쓸 1,000엔 포인트 지급 (상시)",
-     "lastSeen": "2026-11-12T19:54+09:00",
+     "lastSeen": "2026-11-13T03:49+09:00",
      "site": "그리버",
      "text": "次回ご利用頂ける1000円分のポイントが",
      "url": "https://www.greeber.net/"
@@ -19713,7 +19713,7 @@
      "text": "Countdown Week 12/26[FRI]-12/31[WED] LINE友達限定のお得なクーポンをGET",
      "url": "https://komehyo.jp/",
      "firstSeen": "2026-10-27T05:07+09:00",
-     "lastSeen": "2026-11-12T19:54+09:00",
+     "lastSeen": "2026-11-13T03:49+09:00",
      "active": true
     }
    ],
@@ -19724,22 +19724,22 @@
    ]
   },
   "fx": {
-   "checkedAt": "2026-11-12T19:54+09:00",
-   "jpyKrw": 8.3958,
-   "rateDate": "2026-11-11",
+   "checkedAt": "2026-11-13T03:49+09:00",
+   "jpyKrw": 8.354,
+   "rateDate": "2026-11-12",
    "source": "Frankfurter (ECB)",
-   "usdKrw": 1336.9
+   "usdKrw": 1334.1
   },
   "metal": {
    "auG": 22658.0,
-   "checkedAt": "2026-11-12T19:54+09:00",
+   "checkedAt": "2026-11-13T03:49+09:00",
    "ptG": 8980.0,
    "rateDate": "2026-11-12 17:00",
    "source": "다나카귀금속 소매가(세금 포함, 1g)"
   },
   "run": {
    "lastChange": "즐겨찾기 변동 2 · 새 입고 1 · 품절 2",
-   "lastRun": "2026-11-12T19:54+09:00"
+   "lastRun": "2026-11-13T03:49+09:00"
   },
   "watch": {
    "alerted": [
@@ -20190,10 +20190,10 @@
      "g201222"
     ]
    },
-   "gDeepPage": 9,
-   "kDeepIdx": 0,
-   "lastBest": "그리버 205703 K18 옐로우골드 체인 목걸이 ¥69,800 3g 1.37배 / 셀비 260410053 K18 화이트골드 귀걸이 ¥65,148 2.5g 0.73배",
-   "lastScan": "2026-11-12T19:54+09:00",
+   "gDeepPage": 1,
+   "kDeepIdx": 4,
+   "lastBest": "셀비 260410053 K18 화이트골드 귀걸이 ¥65,148 2.5g 0.73배",
+   "lastScan": "2026-11-13T03:49+09:00",
    "maxPrice": 80000,
    "maxRatio": 1.4,
    "minLengthCm": 0,
