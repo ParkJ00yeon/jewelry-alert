@@ -7253,7 +7253,7 @@
   },
   "g194412": {
    "addedAt": "2026-10-22T16:55:31.000Z",
-   "checkedAt": "2026-10-29T18:49+09:00",
+   "checkedAt": "2026-11-15T01:03+09:00",
    "condition": "S",
    "currency": "JPY",
    "history": [
@@ -7266,6 +7266,11 @@
      "t": "2026-10-29T18:49+09:00",
      "price": 33800,
      "status": "판매중"
+    },
+    {
+     "t": "2026-11-15T01:03+09:00",
+     "price": 33800,
+     "status": "품절"
     }
    ],
    "img": "/_blob/12b8f2b404f69b3e574e2c89bd728758",
@@ -7280,7 +7285,7 @@
    "saleTag": "가격 인하 상품(値下げ品)",
    "site": "그리버",
    "size": "",
-   "status": "판매중",
+   "status": "품절",
    "stoneBasis": "다이아 0.09ct × ¥60,000/ct (여러 알 기준)",
    "stoneValue": 5400,
    "stones": "ダイヤモンド:0.09ct",
@@ -7288,9 +7293,7 @@
    "title": "Pt850 플래티넘 다이아 0.09ct 목걸이 41cm (2g)",
    "url": "https://www.greeber.net/c/blj/194412",
    "valueNote": "플래티넘 시세 기준 · 원석 가치는 대략적인 추정치",
-   "weight": "2g",
-   "mustBuy": true,
-   "mustBuyWhy": "S급 · ¥43,000에서 21% 인하"
+   "weight": "2g"
   },
   "g194413": {
    "addedAt": "2026-10-22T16:55:31.000Z",
@@ -19757,14 +19760,14 @@
  },
  "meta": {
   "events": {
-   "checkedAt": "2026-11-14T18:21+09:00",
+   "checkedAt": "2026-11-15T01:03+09:00",
    "items": [
     {
      "active": true,
      "firstSeen": "2026-10-23T10:40+09:00",
      "id": "f631c2ac93bd",
      "ko": "LINE 친구 추가 시 ¥3,000 할인 쿠폰 증정",
-     "lastSeen": "2026-11-14T18:21+09:00",
+     "lastSeen": "2026-11-15T01:03+09:00",
      "site": "셀비",
      "text": "LINEお友達追加で、¥3,000OFFクーポンを進呈！",
      "url": "https://www.selby.shop/"
@@ -19774,7 +19777,7 @@
      "firstSeen": "2026-10-23T10:40+09:00",
      "id": "ba077cfa03df",
      "ko": "구매 후 리뷰를 쓰면 다음 구매에 쓸 1,000엔 포인트 지급 (상시)",
-     "lastSeen": "2026-11-14T18:21+09:00",
+     "lastSeen": "2026-11-15T01:03+09:00",
      "site": "그리버",
      "text": "次回ご利用頂ける1000円分のポイントが",
      "url": "https://www.greeber.net/"
@@ -19785,7 +19788,7 @@
      "text": "Countdown Week 12/26[FRI]-12/31[WED] LINE友達限定のお得なクーポンをGET",
      "url": "https://komehyo.jp/",
      "firstSeen": "2026-10-27T05:07+09:00",
-     "lastSeen": "2026-11-14T18:21+09:00",
+     "lastSeen": "2026-11-15T01:03+09:00",
      "active": true
     }
    ],
@@ -19796,7 +19799,7 @@
    ]
   },
   "fx": {
-   "checkedAt": "2026-11-14T18:21+09:00",
+   "checkedAt": "2026-11-15T01:03+09:00",
    "jpyKrw": 8.3572,
    "rateDate": "2026-11-13",
    "source": "Frankfurter (ECB)",
@@ -19804,14 +19807,14 @@
   },
   "metal": {
    "auG": 22302.0,
-   "checkedAt": "2026-11-14T18:21+09:00",
+   "checkedAt": "2026-11-15T01:03+09:00",
    "ptG": 8873.0,
    "rateDate": "2026-11-13 17:00",
    "source": "다나카귀금속 소매가(세금 포함, 1g)"
   },
   "run": {
-   "lastChange": "새 입고 1 · 품절 1",
-   "lastRun": "2026-11-14T18:21+09:00"
+   "lastChange": "품절 1",
+   "lastRun": "2026-11-15T01:03+09:00"
   },
   "watch": {
    "alerted": [
@@ -20264,10 +20267,10 @@
      "g201222"
     ]
    },
-   "gDeepPage": 1,
-   "kDeepIdx": 4,
-   "lastBest": "그리버 202647 K18 화이트골드 목걸이 ¥78,800 3g 1.45배 / 셀비 260410053 K18 화이트골드 귀걸이 ¥65,148 2.5g 0.74배",
-   "lastScan": "2026-11-14T18:21+09:00",
+   "gDeepPage": 5,
+   "kDeepIdx": 0,
+   "lastBest": "셀비 260410053 K18 화이트골드 귀걸이 ¥65,148 2.5g 0.74배",
+   "lastScan": "2026-11-15T01:03+09:00",
    "maxPrice": 80000,
    "maxRatio": 1.4,
    "minLengthCm": 0,
