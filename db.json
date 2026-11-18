@@ -13479,15 +13479,20 @@
    "url": "https://www.greeber.net/c/genj/205703",
    "price": 69800,
    "currency": "JPY",
-   "status": "판매중",
+   "status": "품절",
    "history": [
     {
      "t": "2026-11-12T19:54+09:00",
      "price": 69800,
      "status": "판매중"
+    },
+    {
+     "t": "2026-11-19T02:57+09:00",
+     "price": 69800,
+     "status": "품절"
     }
    ],
-   "checkedAt": "2026-11-12T19:54+09:00",
+   "checkedAt": "2026-11-19T02:57+09:00",
    "addedAt": "2026-11-12T10:54:47.000Z",
    "img": "",
    "material": "K18 옐로우골드",
@@ -20282,7 +20287,7 @@
   },
   "s260902014": {
    "addedAt": "2026-10-21T00:17:09.000Z",
-   "checkedAt": "2026-10-21T09:17+09:00",
+   "checkedAt": "2026-11-19T02:57+09:00",
    "condition": "A",
    "currency": "JPY",
    "fav": true,
@@ -20291,6 +20296,11 @@
      "price": 12360,
      "status": "판매중",
      "t": "2026-10-21T09:17+09:00"
+    },
+    {
+     "t": "2026-11-19T02:57+09:00",
+     "price": 10800,
+     "status": "판매중"
     }
    ],
    "img": "/_blob/d249ab574a60f3d701ebdb4cd7cc6469",
@@ -20300,7 +20310,7 @@
    "material": "K18 옐로우골드",
    "note": "새 입고 감시로 자동 추가 (가성비 1.33배, K18·K14·¥15만 이하)",
    "order": 302,
-   "price": 12360,
+   "price": 10800,
    "site": "셀비",
    "size": "",
    "status": "판매중",
@@ -20312,7 +20322,9 @@
    "url": "https://www.selby.shop/products/260902-014",
    "valueNote": "원석 가치는 대략적인 추정치",
    "weight": "0.5g",
-   "stoneWeight": "보석 약 0.8ct(약 0.2g)가 중량 0.5g에 포함됨"
+   "stoneWeight": "보석 약 0.8ct(약 0.2g)가 중량 0.5g에 포함됨",
+   "mustBuy": true,
+   "mustBuyWhy": "A급 · ¥12,360에서 13% 인하"
   },
   "s260915058": {
    "addedAt": "2026-10-22T15:56:09.000Z",
@@ -20833,14 +20845,14 @@
  },
  "meta": {
   "events": {
-   "checkedAt": "2026-11-18T18:03+09:00",
+   "checkedAt": "2026-11-19T02:57+09:00",
    "items": [
     {
      "active": true,
      "firstSeen": "2026-10-23T10:40+09:00",
      "id": "f631c2ac93bd",
      "ko": "LINE 친구 추가 시 ¥3,000 할인 쿠폰 증정",
-     "lastSeen": "2026-11-18T18:03+09:00",
+     "lastSeen": "2026-11-19T02:57+09:00",
      "site": "셀비",
      "text": "LINEお友達追加で、¥3,000OFFクーポンを進呈！",
      "url": "https://www.selby.shop/"
@@ -20850,7 +20862,7 @@
      "firstSeen": "2026-10-23T10:40+09:00",
      "id": "ba077cfa03df",
      "ko": "구매 후 리뷰를 쓰면 다음 구매에 쓸 1,000엔 포인트 지급 (상시)",
-     "lastSeen": "2026-11-18T18:03+09:00",
+     "lastSeen": "2026-11-19T02:57+09:00",
      "site": "그리버",
      "text": "次回ご利用頂ける1000円分のポイントが",
      "url": "https://www.greeber.net/"
@@ -20861,7 +20873,7 @@
      "text": "Countdown Week 12/26[FRI]-12/31[WED] LINE友達限定のお得なクーポンをGET",
      "url": "https://komehyo.jp/",
      "firstSeen": "2026-10-27T05:07+09:00",
-     "lastSeen": "2026-11-18T18:03+09:00",
+     "lastSeen": "2026-11-19T02:57+09:00",
      "active": true
     }
    ],
@@ -20872,22 +20884,22 @@
    ]
   },
   "fx": {
-   "checkedAt": "2026-11-18T18:03+09:00",
-   "jpyKrw": 8.3882,
-   "rateDate": "2026-11-17",
+   "checkedAt": "2026-11-19T02:57+09:00",
+   "jpyKrw": 8.3574,
+   "rateDate": "2026-11-18",
    "source": "Frankfurter (ECB)",
-   "usdKrw": 1336.21
+   "usdKrw": 1332.33
   },
   "metal": {
    "auG": 21425.0,
-   "checkedAt": "2026-11-18T18:03+09:00",
+   "checkedAt": "2026-11-19T02:57+09:00",
    "ptG": 8083.0,
    "rateDate": "2026-11-18 17:00",
    "source": "다나카귀금속 소매가(세금 포함, 1g)"
   },
   "run": {
-   "lastChange": "꼭 사야 할 템 2 · 새 입고 20 · 인하·재판매 1 · 품절 1",
-   "lastRun": "2026-11-18T18:03+09:00"
+   "lastChange": "꼭 사야 할 템 1 · 즐겨찾기 변동 1 · 품절 1",
+   "lastRun": "2026-11-19T02:57+09:00"
   },
   "watch": {
    "alerted": [
@@ -21370,10 +21382,10 @@
      "g201222"
     ]
    },
-   "gDeepPage": 5,
-   "kDeepIdx": 4,
-   "lastBest": "그리버 198423 K18 화이트골드 펜던트 ¥79,000 2.4g 0.80배 / 셀비 260410053 K18 화이트골드 귀걸이 ¥65,148 2.5g 0.75배",
-   "lastScan": "2026-11-18T18:03+09:00",
+   "gDeepPage": 9,
+   "kDeepIdx": 0,
+   "lastBest": "셀비 260410053 K18 화이트골드 귀걸이 ¥65,148 2.5g 0.75배",
+   "lastScan": "2026-11-19T02:57+09:00",
    "maxPrice": 80000,
    "maxRatio": 1.4,
    "minLengthCm": 0,
